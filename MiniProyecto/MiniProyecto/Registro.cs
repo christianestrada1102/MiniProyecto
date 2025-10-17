@@ -33,6 +33,30 @@ namespace MiniProyecto
 
         }
 
+        // ⭐ FUNCIÓN PARA CALCULAR LA EDAD
+        private int CalcularEdad(DateTime fechaNacimiento)
+        {
+            DateTime hoy = DateTime.Today;
+
+            // ⭐ Validar que la fecha no sea en el futuro
+            if (fechaNacimiento > hoy)
+            {
+                MessageBox.Show("La fecha de nacimiento no puede ser en el futuro", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return 0;
+            }
+
+            int edad = hoy.Year - fechaNacimiento.Year;
+
+            // Verificar si ya cumplió años este año
+            if (fechaNacimiento.Date > hoy.AddYears(-edad))
+            {
+                edad--;
+            }
+
+            return edad;
+        }
+
+
         private void CalcularVigencia(object sender, EventArgs e)
         {
             // Obtener la fecha de inicio
@@ -64,9 +88,11 @@ namespace MiniProyecto
                 return;
             }
 
-            // ⭐ CAMBIA lblVigencia POR EL NOMBRE DE TU LABEL
-            // Mostrar el mensaje con las fechas
-            lblVigencia.Text = $"La membresia comenzara el {fechaInicio:dd/MM/yyyy} \n y terminara el {fechaFin:dd/MM/yyyy}";
+            // ⭐ CALCULAR Y MOSTRAR LA EDAD
+            int edad = CalcularEdad(fechaNac.Value);
+            lblVigencia.Text = $"Tu membresía comenzó el {fechaInicio:dd/MM/yyyy}" +
+                $" \ny termina el {fechaFin:dd/MM/yyyy} \nEdad: {edad} años";
+        
         }
 
         private void nombretb_TextChanged(object sender, EventArgs e)
@@ -84,10 +110,22 @@ namespace MiniProyecto
             // ⭐ MODIFICA CON TUS NOMBRES DE CONTROLES
             string nombre = nombretb.Text;
             string apellido = apellidotb.Text;
+            DateTime fechaNacimiento = fechaNac.Value;
+
+            // ⭐ VALIDACIÓN DE EDAD - NO PERMITE MENORES DE 18
+            int edad = CalcularEdad(fechaNacimiento);
+            if (edad < 18)
+            {
+                MessageBox.Show($"Lo sentimos, debes tener 18 años o más para registrarte. Tienes {edad} años.",
+                    "Acceso denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             DateTime fechaInicio = dateTimePicker1.Value;
 
             // Calcular fecha de término
             DateTime fechaTermino;
+
             string tipoMembresia = "";
 
             if (rdmes.Checked)
@@ -111,9 +149,18 @@ namespace MiniProyecto
                 return;
             }
 
-            // Aquí guardarías en la base de datos
+            // Guardar en la base de datos
             ConexionBD bd = new ConexionBD();
-            bd.InsertarUsuario(nombre, apellido, fechaInicio, fechaTermino, tipoMembresia);
+            bd.InsertarUsuario(nombre, apellido, edad, fechaInicio, fechaTermino, tipoMembresia);
+
+            // ⭐ LIMPIAR LOS CAMPOS DESPUÉS DE GUARDAR
+            nombretb.Text = "";
+            apellidotb.Text = "";
+            dateTimePicker1.Value = DateTime.Today;
+            rdmes.Checked = false;
+            rdsem.Checked = false;
+            rdano.Checked = false;
+            lblVigencia.Text = "";
         }
     }
 
@@ -123,7 +170,7 @@ namespace MiniProyecto
     {
         private string cadenaConexion = @"Server=localhost;Port=3308;Database=pruebasgestiongym;Uid=root;Pwd=;";
 
-        public bool InsertarUsuario(string nombre, string apellido, DateTime fechaInicio, DateTime fechaTermino, string tipoMembresia)
+        public bool InsertarUsuario(string nombre, string apellido, int edad, DateTime fechaInicio, DateTime fechaTermino, string tipoMembresia)
         {
             try
             {
@@ -132,13 +179,14 @@ namespace MiniProyecto
                     conexion.Open();
 
                     // ⭐ ASEGÚRATE QUE TU TABLA TENGA ESTAS COLUMNAS
-                    string consulta = "INSERT INTO pruebas (nombre, apellido, fechaini, fechafin, tipomembresia) " +
-                                    "VALUES (@nombre, @apellido, @fechaInicio, @fechaTermino, @tipoMembresia)";
+                    string consulta = "INSERT INTO pruebas (nombre, apellido,edad, fechaini, fechafin, tipomembresia) " +
+                                    "VALUES (@nombre, @apellido,@edad, @fechaInicio, @fechaTermino, @tipoMembresia)";
 
                     using (MySqlCommand comando = new MySqlCommand(consulta, conexion))
                     {
                         comando.Parameters.AddWithValue("@nombre", nombre);
                         comando.Parameters.AddWithValue("@apellido", apellido);
+                        comando.Parameters.AddWithValue("@edad", edad);
                         comando.Parameters.AddWithValue("@fechaInicio", fechaInicio);
                         comando.Parameters.AddWithValue("@fechaTermino", fechaTermino);
                         comando.Parameters.AddWithValue("@tipoMembresia", tipoMembresia);
