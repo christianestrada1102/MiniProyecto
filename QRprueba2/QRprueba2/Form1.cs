@@ -115,5 +115,52 @@ namespace QRprueba2
             if (Camara != null && Camara.IsRunning)
                 Camara.SignalToStop();
         }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Datos de ejemplo (luego puedes reemplazar por los que ingreses desde TextBox)
+                string nombre = "Christian";
+                string apellido = "Maniel";
+                string membresia = "Gold";
+
+                // Texto que contendrá el QR
+                string textoQR = $"Nombre: {nombre}\nApellido: {apellido}\nMembresía: {membresia}";
+
+                // Nombre del archivo (se guarda dentro de la carpeta del proyecto)
+                string nombreArchivo = $"{nombre}_{apellido}";
+
+                // Llamada a tu clase GenerarQR
+                string rutaQR = GenerarQR.CrearCodigoQR(textoQR, nombreArchivo);
+
+                if (rutaQR != null)
+                {
+                    // Mostrar el QR en una ventana emergente
+                    Form ventanaQR = new Form();
+                    ventanaQR.Text = "Código QR generado";
+                    ventanaQR.StartPosition = FormStartPosition.CenterScreen;
+                    ventanaQR.Size = new Size(350, 350);
+
+                    PictureBox pictureBoxQR = new PictureBox();
+                    pictureBoxQR.Dock = DockStyle.Fill;
+                    pictureBoxQR.SizeMode = PictureBoxSizeMode.Zoom;
+                    pictureBoxQR.Image = Image.FromFile(rutaQR);
+
+                    ventanaQR.Controls.Add(pictureBoxQR);
+                    ventanaQR.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("⚠️ No se pudo generar el QR.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+
+
+        }
     }
 }
