@@ -1,166 +1,232 @@
-﻿using AForge.Video;
-using AForge.Video.DirectShow;
-using System;
+﻿using System;
 using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
+using AForge.Video;
+using AForge.Video.DirectShow;
 using ZXing;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QRprueba2
 {
     public partial class Form1 : Form
     {
-        private FilterInfoCollection DispositivosDeVideo;
-        private VideoCaptureDevice Camara;
+        private FilterInfoCollection dispositivos;
+        private VideoCaptureDevice fuenteVideo;
         private Timer temporizador;
 
         public Form1()
         {
             InitializeComponent();
-            this.FormClosing += Form1_FormClosing;
-            this.Load += Form1_Load;
-            btnIniciar.Click += BtnIniciar_Click;
+            CargarDispositivos();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            // Buscar cámaras disponibles
-            DispositivosDeVideo = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-
-            if (DispositivosDeVideo.Count == 0)
-            {
-                MessageBox.Show("No se encontró ninguna cámara.");
-                return;
-            }
-
-            foreach (FilterInfo dispositivo in DispositivosDeVideo)
-            {
-                comboBox1.Items.Add(dispositivo.Name);
-            }
-
-            comboBox1.SelectedIndex = 0;
-
-            // Crear temporizador para leer QR
-            temporizador = new Timer();
-            temporizador.Interval = 200; // cada 0.2 segundos
-            temporizador.Tick += Temporizador_Tick;
-        }
-
-        private void BtnIniciar_Click(object sender, EventArgs e)
-        {
-            if (comboBox1.SelectedIndex < 0)
-            {
-                MessageBox.Show("Selecciona una cámara primero.");
-                return;
-            }
-
-            Camara = new VideoCaptureDevice(DispositivosDeVideo[comboBox1.SelectedIndex].MonikerString);
-            Camara.NewFrame += Camara_NewFrame;
-            Camara.Start();
-            temporizador.Start();
-            lblResultado.Text = "Escaneando QR...";
-        }
-
-        private void Camara_NewFrame(object sender, NewFrameEventArgs eventArgs)
-        {
-            Bitmap imagen = (Bitmap)eventArgs.Frame.Clone();
-            pictureBox1.Image = imagen;
-        }
-
-        private void Temporizador_Tick(object sender, EventArgs e)
-        {
-            if (pictureBox1.Image == null)
-                return;
-
-            Bitmap bitmap = new Bitmap(pictureBox1.Image);
-            BarcodeReader lector = new BarcodeReader();
-
-            var resultado = lector.Decode(bitmap);
-
-            if (resultado != null)
-            {
-                temporizador.Stop();
-                if (Camara != null && Camara.IsRunning)
-                    Camara.SignalToStop();
-
-                string codigoQR = resultado.Text;
-                lblResultado.Text = "QR detectado: " + codigoQR;
-
-                var usuario = UsuarioDAO.BuscarUsuarioPorCodigo(codigoQR);
-
-                if (usuario != null)
-                {
-                    MessageBox.Show(
-                        $"✅ Usuario encontrado:\n\n" +
-                        $"Nombre: {usuario.Nombre} {usuario.Apellido}\n" +
-                        $"Edad: {usuario.Edad}\n" +
-                        $"Membresía: {usuario.Membresia}\n" +
-                        $"Inicio: {usuario.FechaInicio.ToShortDateString()}\n" +
-                        $"Fin: {usuario.FechaFin.ToShortDateString()}",
-                        "Información del Usuario"
-                    );
-                }
-                else
-                {
-                    MessageBox.Show("❌ No se encontró ningún usuario con ese código QR.", "Sin resultados");
-                }
-            }
-
-
-        }
-
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (Camara != null && Camara.IsRunning)
-                Camara.SignalToStop();
-        }
-
-        private void btnRegistrar_Click(object sender, EventArgs e)
+        private void CargarDispositivos()
         {
             try
             {
-                // Datos de ejemplo (luego puedes reemplazar por los que ingreses desde TextBox)
-                string nombre = "Christian";
-                string apellido = "Maniel";
-                string membresia = "Gold";
-
-                // Texto que contendrá el QR
-                string textoQR = $"Nombre: {nombre}\nApellido: {apellido}\nMembresía: {membresia}";
-
-                // Nombre del archivo (se guarda dentro de la carpeta del proyecto)
-                string nombreArchivo = $"{nombre}_{apellido}";
-
-                // Llamada a tu clase GenerarQR
-                string rutaQR = GenerarQR.CrearCodigoQR(textoQR, nombreArchivo);
-
-                if (rutaQR != null)
+                dispositivos = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+                foreach (FilterInfo dispositivo in dispositivos)
                 {
-                    // Mostrar el QR en una ventana emergente
-                    Form ventanaQR = new Form();
-                    ventanaQR.Text = "Código QR generado";
-                    ventanaQR.StartPosition = FormStartPosition.CenterScreen;
-                    ventanaQR.Size = new Size(350, 350);
-
-                    PictureBox pictureBoxQR = new PictureBox();
-                    pictureBoxQR.Dock = DockStyle.Fill;
-                    pictureBoxQR.SizeMode = PictureBoxSizeMode.Zoom;
-                    pictureBoxQR.Image = Image.FromFile(rutaQR);
-
-                    ventanaQR.Controls.Add(pictureBoxQR);
-                    ventanaQR.ShowDialog();
+                    comboBox1.Items.Add(dispositivo.Name);
                 }
+
+                if (comboBox1.Items.Count > 0)
+                    comboBox1.SelectedIndex = 0;
                 else
+                    MessageBox.Show("No se encontró ninguna cámara conectada.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar las cámaras: " + ex.Message);
+            }
+        }
+
+        private void btnIniciar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (fuenteVideo == null || !fuenteVideo.IsRunning)
                 {
-                    MessageBox.Show("⚠️ No se pudo generar el QR.");
+                    if (comboBox1.SelectedIndex < 0)
+                    {
+                        MessageBox.Show("Por favor selecciona una cámara.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    fuenteVideo = new VideoCaptureDevice(dispositivos[comboBox1.SelectedIndex].MonikerString);
+                    fuenteVideo.NewFrame += new NewFrameEventHandler(Captura);
+                    fuenteVideo.Start();
+
+                    temporizador = new Timer();
+                    temporizador.Interval = 100;
+                    temporizador.Tick += new EventHandler(Temporizador_Tick);
+                    temporizador.Start();
+
+                    lblResultado.Text = "Escaneando código QR...";
+                    btnIniciar.Enabled = false;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}");
+                MessageBox.Show("Error al iniciar cámara: " + ex.Message);
             }
+        }
 
+        private void Captura(object sender, NewFrameEventArgs eventArgs)
+        {
+            try
+            {
+                Bitmap imagen = (Bitmap)eventArgs.Frame.Clone();
 
+                // Actualizar la imagen en el hilo de la UI
+                if (pictureBox1.InvokeRequired)
+                {
+                    pictureBox1.Invoke(new Action(() =>
+                    {
+                        if (pictureBox1.Image != null)
+                            pictureBox1.Image.Dispose();
+                        pictureBox1.Image = imagen;
+                    }));
+                }
+                else
+                {
+                    if (pictureBox1.Image != null)
+                        pictureBox1.Image.Dispose();
+                    pictureBox1.Image = imagen;
+                }
+            }
+            catch { }
+        }
+
+        private void Temporizador_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (pictureBox1.Image != null)
+                {
+                    Bitmap imagenActual = null;
+
+                    // Crear una copia de la imagen para evitar problemas de concurrencia
+                    lock (pictureBox1)
+                    {
+                        if (pictureBox1.Image != null)
+                        {
+                            imagenActual = new Bitmap(pictureBox1.Image);
+                        }
+                    }
+
+                    if (imagenActual != null)
+                    {
+                        BarcodeReader lector = new BarcodeReader();
+                        Result resultado = lector.Decode(imagenActual);
+                        imagenActual.Dispose();
+
+                        if (resultado != null)
+                        {
+                            string codigoQR = resultado.Text;
+
+                            // Detener el temporizador y la cámara
+                            temporizador.Stop();
+
+                            if (fuenteVideo != null && fuenteVideo.IsRunning)
+                            {
+                                fuenteVideo.SignalToStop();
+                                fuenteVideo.WaitForStop();
+                            }
+
+                            // Log del código QR detectado
+                            System.Diagnostics.Debug.WriteLine($"Código QR detectado: {codigoQR}");
+
+                            // Buscar el usuario en la base de datos
+                            var usuario = UsuarioDAO.BuscarUsuarioPorCodigo(codigoQR);
+
+                            // Verificar si se encontró el usuario
+                            if (usuario.Item1 != null && !string.IsNullOrEmpty(usuario.Item1))
+                            {
+                                string info = $"✅ USUARIO ENCONTRADO\n\n" +
+                                              $"━━━━━━━━━━━━━━━━━━━━━━\n" +
+                                              $"📋 Nombre: {usuario.Item1} {usuario.Item2}\n" +
+                                              $"🎂 Edad: {usuario.Item3} años\n" +
+                                              $"💳 Membresía: {usuario.Item4}\n" +
+                                              $"📅 Inicio: {usuario.Item5}\n" +
+                                              $"📅 Fin: {usuario.Item6}\n" +
+                                              $"━━━━━━━━━━━━━━━━━━━━━━\n" +
+                                              $"🔑 Código QR: {codigoQR}";
+
+                                MessageBox.Show(info, "✅ Información del Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                lblResultado.Text = $"✅ Usuario: {usuario.Item1} {usuario.Item2}";
+                            }
+                            else
+                            {
+                                string mensaje = $"❌ NO ENCONTRADO\n\n" +
+                                               $"No se encontró ningún usuario\n" +
+                                               $"con el código QR:\n\n" +
+                                               $"{codigoQR}\n\n" +
+                                               $"Por favor verifica que el usuario\n" +
+                                               $"esté registrado en la base de datos.";
+
+                                MessageBox.Show(mensaje, "❌ Usuario no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                lblResultado.Text = "❌ Usuario no encontrado";
+                            }
+
+                            // Limpiar y reactivar el botón
+                            fuenteVideo = null;
+                            btnIniciar.Enabled = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al escanear: " + ex.Message);
+                temporizador.Stop();
+                if (fuenteVideo != null && fuenteVideo.IsRunning)
+                {
+                    fuenteVideo.SignalToStop();
+                }
+                btnIniciar.Enabled = true;
+            }
+        }
+
+        // Botón para abrir formulario de registro
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (FormRegistroUsuario frm = new FormRegistroUsuario())
+                {
+                    frm.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al abrir formulario: " + ex.Message);
+            }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            try
+            {
+                if (temporizador != null)
+                {
+                    temporizador.Stop();
+                    temporizador.Dispose();
+                }
+
+                if (fuenteVideo != null && fuenteVideo.IsRunning)
+                {
+                    fuenteVideo.SignalToStop();
+                    fuenteVideo.WaitForStop();
+                }
+
+                if (pictureBox1.Image != null)
+                {
+                    pictureBox1.Image.Dispose();
+                }
+            }
+            catch { }
+
+            base.OnFormClosing(e);
         }
     }
 }
