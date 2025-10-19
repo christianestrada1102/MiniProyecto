@@ -112,7 +112,7 @@ namespace MiniProyecto
             string apellido = apellidotb.Text;
             DateTime fechaNacimiento = fechaNac.Value;
 
-            // ⭐ VALIDACIÓN DE EDAD - NO PERMITE MENORES DE 18
+            // ⭐ VALIDACIÓN DE EDAD - NO PERMITE MENORES    DE 18
             int edad = CalcularEdad(fechaNacimiento);
             if (edad < 18)
             {
