@@ -164,45 +164,5 @@ namespace MiniProyecto
         }
     }
 
-
-    //ConexionBD
-    public class ConexionBD
-    {
-        private string cadenaConexion = @"Server=localhost;Port=3308;Database=pruebasgestiongym;Uid=root;Pwd=;";
-
-        public bool InsertarUsuario(string nombre, string apellido, int edad, DateTime fechaInicio, DateTime fechaTermino, string tipoMembresia)
-        {
-            try
-            {
-                using (MySqlConnection conexion = new MySqlConnection(cadenaConexion))
-                {
-                    conexion.Open();
-
-                    // ⭐ ASEGÚRATE QUE TU TABLA TENGA ESTAS COLUMNAS
-                    string consulta = "INSERT INTO pruebas (nombre, apellido,edad, fechaini, fechafin, tipomembresia) " +
-                                    "VALUES (@nombre, @apellido,@edad, @fechaInicio, @fechaTermino, @tipoMembresia)";
-
-                    using (MySqlCommand comando = new MySqlCommand(consulta, conexion))
-                    {
-                        comando.Parameters.AddWithValue("@nombre", nombre);
-                        comando.Parameters.AddWithValue("@apellido", apellido);
-                        comando.Parameters.AddWithValue("@edad", edad);
-                        comando.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-                        comando.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-                        comando.Parameters.AddWithValue("@tipoMembresia", tipoMembresia);
-
-                        comando.ExecuteNonQuery();
-                        MessageBox.Show("Membresía registrada correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return true;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
-    }
 }
 
