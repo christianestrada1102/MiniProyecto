@@ -7,31 +7,18 @@ namespace QRprueba2
 {
     public partial class FormRegistroUsuario : Form
     {
-        private bool _ejecutandoEvento = false; // evita ejecuciones múltiples del mismo evento
+        private bool _ejecutandoEvento = false;
 
         public FormRegistroUsuario()
         {
             InitializeComponent();
 
-            // Conectar eventos de forma segura (evita duplicados si ya están en el designer)
-            // Usamos -= antes de += para asegurarnos de no tener múltiples suscripciones
+            // Conectar eventos de forma segura
             btnGenerarQR.Click -= btnGenerarQR_Click;
             btnGenerarQR.Click += btnGenerarQR_Click;
 
             txtMembresia.TextChanged -= TxtMembresia_TextChanged;
             txtMembresia.TextChanged += TxtMembresia_TextChanged;
-
-            // Si en vez de TextBox usas ComboBox para membresía, el SelectedIndexChanged también se conecta
-            try
-            {
-                var combo = this.Controls["txtMembresia"] as ComboBox;
-                if (combo != null)
-                {
-                    combo.SelectedIndexChanged -= ComboMembresia_SelectedIndexChanged;
-                    combo.SelectedIndexChanged += ComboMembresia_SelectedIndexChanged;
-                }
-            }
-            catch { /* si no existe, no importa */ }
 
             dtInicio.ValueChanged -= DtInicio_ValueChanged;
             dtInicio.ValueChanged += DtInicio_ValueChanged;
@@ -48,25 +35,27 @@ namespace QRprueba2
             CalcularFechaFin();
         }
 
-        // Si txtMembresia es TextBox
         private void TxtMembresia_TextChanged(object sender, EventArgs e)
         {
-            CalcularFechaFin();
-        }
-
-        // Si txtMembresia es ComboBox (por si cambias a combo)
-        private void ComboMembresia_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // actualizar texto del control para reutilizar la misma lógica
-            if (sender is ComboBox cb)
-                txtMembresia.Text = cb.Text;
-
             CalcularFechaFin();
         }
 
         private void DtInicio_ValueChanged(object sender, EventArgs e)
         {
             CalcularFechaFin();
+        }
+
+        private bool ValidarMembresia(string membresia)
+        {
+            string membresiaLower = membresia.Trim().ToLower();
+
+            // Solo permitir: dia, semana, mes, año
+            return membresiaLower == "dia" ||
+                   membresiaLower == "día" ||
+                   membresiaLower == "semana" ||
+                   membresiaLower == "mes" ||
+                   membresiaLower == "año" ||
+                   membresiaLower == "ano";
         }
 
         private void CalcularFechaFin()
@@ -77,30 +66,28 @@ namespace QRprueba2
                 DateTime fechaInicio = dtInicio.Value.Date;
                 DateTime fechaFin = fechaInicio;
 
-                // Detecta las palabras clave aunque el usuario escriba parcial
-                if (membresia.Contains("día") || membresia.Contains("dia"))
+                if (membresia == "día" || membresia == "dia")
                 {
                     fechaFin = fechaInicio.AddDays(1);
                 }
-                else if (membresia.Contains("semana"))
+                else if (membresia == "semana")
                 {
                     fechaFin = fechaInicio.AddDays(7);
                 }
-                else if (membresia.Contains("mes"))
+                else if (membresia == "mes")
                 {
                     fechaFin = fechaInicio.AddMonths(1);
                 }
-                else if (membresia.Contains("año") || membresia.Contains("ano"))
+                else if (membresia == "año" || membresia == "ano")
                 {
                     fechaFin = fechaInicio.AddYears(1);
                 }
                 else
                 {
-                    // Por defecto 1 mes si no reconoce
+                    // Si no es válido, usar 1 mes por defecto
                     fechaFin = fechaInicio.AddMonths(1);
                 }
 
-                // Actualizar dtFin de forma segura en UI thread
                 if (dtFin.InvokeRequired)
                 {
                     dtFin.Invoke(new Action(() => dtFin.Value = fechaFin));
@@ -110,11 +97,9 @@ namespace QRprueba2
                     dtFin.Value = fechaFin;
                 }
 
-                // Duración total entre inicio y fin (días)
                 int duracionTotal = (int)(fechaFin.Date - fechaInicio.Date).TotalDays;
                 if (duracionTotal < 0) duracionTotal = 0;
 
-                // Días restantes desde hoy hasta fin
                 int diasRestantes = (int)(fechaFin.Date - DateTime.Now.Date).TotalDays;
                 int diasMostrar = Math.Max(diasRestantes, 0);
 
@@ -123,21 +108,17 @@ namespace QRprueba2
                     lblDiasRestantes.Text = $"Duración: {duracionTotal} días | Restan: {diasMostrar} días";
                 }
             }
-            catch
-            {
-                // evita excepciones si el usuario escribe muy rápido
-            }
+            catch { }
         }
 
         private void btnGenerarQR_Click(object sender, EventArgs e)
         {
-            // Evita que el método se ejecute varias veces por doble-click o suscripciones duplicadas
             if (_ejecutandoEvento) return;
             _ejecutandoEvento = true;
 
             try
             {
-                // Validaciones
+                // Validaciones básicas
                 if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
                     string.IsNullOrWhiteSpace(txtApellido.Text) ||
                     string.IsNullOrWhiteSpace(txtEdad.Text) ||
@@ -147,9 +128,21 @@ namespace QRprueba2
                     return;
                 }
 
+                // Validar edad
                 if (!int.TryParse(txtEdad.Text, out int edad) || edad <= 0 || edad > 120)
                 {
-                    MessageBox.Show("⚠️ Por favor ingresa una edad válida.", "Edad Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("⚠️ Por favor ingresa una edad válida (1-120).", "Edad Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Validar membresía
+                if (!ValidarMembresia(txtMembresia.Text))
+                {
+                    MessageBox.Show("⚠️ Membresía inválida.\n\nSolo se permiten:\n• dia\n• semana\n• mes\n• año",
+                                    "Membresía Inválida",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                    txtMembresia.Focus();
                     return;
                 }
 
@@ -171,7 +164,7 @@ namespace QRprueba2
                 // Preparar datos para la BD
                 string nombre = txtNombre.Text.Trim();
                 string apellido = txtApellido.Text.Trim();
-                string membresia = txtMembresia.Text.Trim();
+                string membresia = txtMembresia.Text.Trim().ToLower();
                 string edadStr = txtEdad.Text.Trim();
                 string fechaInicio = dtInicio.Value.Date.ToString("yyyy-MM-dd");
                 string fechaFin = dtFin.Value.Date.ToString("yyyy-MM-dd");
@@ -180,18 +173,17 @@ namespace QRprueba2
 
                 if (insertado)
                 {
-                    // Guardar QR en escritorio (no interrumpe si falla)
-                    try
-                    {
-                        string rutaEscritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                        string nombreArchivo = $"QR_{nombre}_{apellido}_{codigoQR}.png";
-                        string rutaCompleta = System.IO.Path.Combine(rutaEscritorio, nombreArchivo);
-                        pictureBoxQR.Image.Save(rutaCompleta);
-                    }
-                    catch { }
+                    // Guardar QR en Downloads/QR
+                    string nombreArchivo = $"QR_{nombre}_{apellido}_{codigoQR}";
+                    string rutaGuardada = GenerarQR.GuardarQR(qrImage, nombreArchivo);
 
-                    // Solo mostrar mensaje de éxito (como pediste)
-                    MessageBox.Show("✅ Usuario registrado correctamente.", "Registro Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (rutaGuardada != null)
+                    {
+                        MessageBox.Show($"✅ Usuario registrado correctamente.\n\n💾 QR guardado en:\n{rutaGuardada}",
+                                        "Registro Exitoso",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Information);
+                    }
 
                     // Limpiar campos (mantener QR visible)
                     txtNombre.Clear();
@@ -204,7 +196,6 @@ namespace QRprueba2
                 else
                 {
                     pictureBoxQR.Image = null;
-                    MessageBox.Show("❌ No se pudo registrar el usuario.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
