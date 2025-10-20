@@ -98,6 +98,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimacionInicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnimacionInicio.Designer.cs">
+      <DependentUpon>AnimacionInicio.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConexionBD.cs" />
     <Compile Include="AdminUsuarios.cs">
       <SubType>Form</SubType>
@@ -127,6 +133,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AdminUsuarios.resx">
       <DependentUpon>AdminUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AnimacionInicio.resx">
+      <DependentUpon>AnimacionInicio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InfoUsuario.resx">
       <DependentUpon>InfoUsuario.cs</DependentUpon>

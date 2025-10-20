@@ -32,11 +32,14 @@ namespace MiniProyecto
             {
                 MessageBox.Show("Inicio de sesión exitoso.", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Aquí puedes abrir tu formulario principal o dashboard
-                // Ejemplo:
-                // var dashboard = new FormPrincipal();
-                // dashboard.Show();
-                // this.Hide();
+                // Crear instancia del formulario AnimacionInicio
+                AnimacionInicio animacion = new AnimacionInicio();
+
+                // Mostrar el formulario de animación
+                animacion.Show();
+
+                // Ocultar el formulario de login
+                this.Hide();
             }
             else
             {
