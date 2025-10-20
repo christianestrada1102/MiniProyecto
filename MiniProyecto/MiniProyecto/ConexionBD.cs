@@ -7,8 +7,8 @@ namespace MiniProyecto
 {
     public partial class ConexionBD
     {
-        
-        private string cadenaConexion = @"Server=localhost;Port=3308;Database=pruebasgestiongym;Uid=root;Pwd=;";
+        // ✅ Conexión igual que la tuya
+        private string cadenaConexion = @"Server=127.0.0.1;Port=3306;Database=pruebasgestiongym;Uid=root;Pwd=;";
 
         // ⭐ CREAR
         public bool InsertarUsuario(string nombre, string apellido, int edad, DateTime fechaInicio, DateTime fechaTermino, string tipoMembresia)
@@ -20,7 +20,7 @@ namespace MiniProyecto
                     conexion.Open();
 
                     string consulta = "INSERT INTO pruebas (nombre, apellido, edad, fechaini, fechafin, tipomembresia) " +
-                                    "VALUES (@nombre, @apellido, @edad, @fechaInicio, @fechaTermino, @tipoMembresia)";
+                                      "VALUES (@nombre, @apellido, @edad, @fechaInicio, @fechaTermino, @tipoMembresia)";
 
                     using (MySqlCommand comando = new MySqlCommand(consulta, conexion))
                     {
@@ -106,8 +106,8 @@ namespace MiniProyecto
                     conexion.Open();
 
                     string consulta = "UPDATE pruebas SET nombre=@nombre, apellido=@apellido, edad=@edad, " +
-                                    "fechaini=@fechaInicio, fechafin=@fechaTermino, tipomembresia=@tipoMembresia " +
-                                    "WHERE id=@id";
+                                      "fechaini=@fechaInicio, fechafin=@fechaTermino, tipomembresia=@tipoMembresia " +
+                                      "WHERE id=@id";
 
                     using (MySqlCommand comando = new MySqlCommand(consulta, conexion))
                     {
@@ -156,10 +156,7 @@ namespace MiniProyecto
                 return false;
             }
         }
-    }
 
-    public partial class ConexionBD
-    {
         // ⭐ OBTENER USUARIO POR ID
         public DataTable ObtenerUsuarioPorID(int idUsuario)
         {
