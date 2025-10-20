@@ -1,6 +1,6 @@
 ﻿namespace QRprueba2
 {
-    partial class Form1
+    partial class ScanQR
     {
         /// <summary>
         ///  Variable del diseñador requerida.
@@ -69,7 +69,7 @@
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(206, 325);
+            this.comboBox1.Location = new System.Drawing.Point(214, 327);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(217, 24);
             this.comboBox1.TabIndex = 3;
@@ -84,7 +84,7 @@
             this.btnRegistrar.UseVisualStyleBackColor = true;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
-            // Form1
+            // ScanQR
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -94,7 +94,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblResultado);
             this.Controls.Add(this.btnIniciar);
-            this.Name = "Form1";
+            this.Name = "ScanQR";
             this.Text = "Lector QR básico";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

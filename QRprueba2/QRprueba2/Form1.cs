@@ -8,14 +8,14 @@ using ZXing;
 
 namespace QRprueba2
 {
-    public partial class Form1 : Form
+    public partial class ScanQR : Form
     {
         private FilterInfoCollection dispositivos;
         private VideoCaptureDevice fuenteVideo;
         private Timer temporizador;
         private bool procesando = false;
 
-        public Form1()
+        public ScanQR()
         {
             InitializeComponent();
             CargarDispositivos();
