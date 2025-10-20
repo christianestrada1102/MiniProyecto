@@ -5,9 +5,9 @@ using System.Windows.Forms;
 
 namespace MiniProyecto
 {
-    public class ConexionBD
+    public partial class ConexionBD
     {
-        // ⭐ MODIFICA ESTO CON TUS DATOS
+        
         private string cadenaConexion = @"Server=localhost;Port=3308;Database=pruebasgestiongym;Uid=root;Pwd=;";
 
         // ⭐ CREAR
@@ -154,6 +154,38 @@ namespace MiniProyecto
             {
                 MessageBox.Show("Error al eliminar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
+            }
+        }
+    }
+
+    public partial class ConexionBD
+    {
+        // ⭐ OBTENER USUARIO POR ID
+        public DataTable ObtenerUsuarioPorID(int idUsuario)
+        {
+            try
+            {
+                using (MySqlConnection conexion = new MySqlConnection(cadenaConexion))
+                {
+                    conexion.Open();
+                    string consulta = "SELECT * FROM pruebas WHERE id=@id";
+
+                    using (MySqlCommand comando = new MySqlCommand(consulta, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@id", idUsuario);
+
+                        MySqlDataAdapter adaptador = new MySqlDataAdapter(comando);
+                        DataTable datos = new DataTable();
+                        adaptador.Fill(datos);
+
+                        return datos;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
     }

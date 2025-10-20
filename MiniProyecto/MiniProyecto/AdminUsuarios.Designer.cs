@@ -97,10 +97,6 @@
             // cmbTipoMembresia
             // 
             this.cmbTipoMembresia.FormattingEnabled = true;
-            this.cmbTipoMembresia.Items.AddRange(new object[] {
-            "Año",
-            "Mes",
-            "Semana"});
             this.cmbTipoMembresia.Location = new System.Drawing.Point(378, 330);
             this.cmbTipoMembresia.Name = "cmbTipoMembresia";
             this.cmbTipoMembresia.Size = new System.Drawing.Size(121, 24);
