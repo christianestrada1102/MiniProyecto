@@ -216,5 +216,25 @@ namespace QRprueba2
                 _ejecutandoEvento = false;
             }
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtInicio_ValueChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtFin_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBoxQR_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
