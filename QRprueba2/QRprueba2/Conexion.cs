@@ -7,11 +7,11 @@ namespace QRprueba2
     {
         public static MySqlConnection ObtenerConexion()
         {
-            string servidor = "127.0.0.1";
-            string bd = "pruebasgestiongym";
-            string usuario = "root";
-            string password = "";
-            string puerto = "3306";
+            string servidor = "10.1.124.168"; // 🔹 IP del servidor remoto
+            string bd = "pruebasgestiongym";  // 🔹 Base de datos
+            string usuario = "GestionGym";    // 🔹 Usuario del servidor MySQL
+            string password = "chris_kikin";  // 🔹 Contraseña
+            string puerto = "3306";           // 🔹 Puerto habilitado
 
             string cadenaConexion = $"SERVER={servidor};DATABASE={bd};UID={usuario};PASSWORD={password};PORT={puerto};";
 
@@ -20,6 +20,7 @@ namespace QRprueba2
             try
             {
                 conexion.Open();
+                Console.WriteLine("✅ Conexión establecida correctamente.");
                 return conexion;
             }
             catch (Exception ex)
