@@ -29,19 +29,19 @@
         {
             this.btnIniciar = new System.Windows.Forms.Button();
             this.lblResultado = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnRegistrar = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnIniciar
             // 
-            this.btnIniciar.Location = new System.Drawing.Point(34, 320);
+            this.btnIniciar.Location = new System.Drawing.Point(408, 358);
             this.btnIniciar.Name = "btnIniciar";
             this.btnIniciar.Size = new System.Drawing.Size(137, 37);
             this.btnIniciar.TabIndex = 0;
-            this.btnIniciar.Text = "Iniciar";
+            this.btnIniciar.Text = "INICIAR";
             this.btnIniciar.UseVisualStyleBackColor = true;
             this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
             // 
@@ -49,46 +49,46 @@
             // 
             this.lblResultado.AutoSize = true;
             this.lblResultado.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblResultado.Location = new System.Drawing.Point(34, 277);
+            this.lblResultado.Location = new System.Drawing.Point(408, 290);
             this.lblResultado.Name = "lblResultado";
-            this.lblResultado.Size = new System.Drawing.Size(178, 23);
+            this.lblResultado.Size = new System.Drawing.Size(138, 23);
             this.lblResultado.TabIndex = 1;
-            this.lblResultado.Text = "Esperando resultado...";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(34, 21);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(388, 235);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.lblResultado.Text = "CAPTURANDO....";
             // 
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(214, 327);
+            this.comboBox1.Location = new System.Drawing.Point(589, 358);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(217, 24);
             this.comboBox1.TabIndex = 3;
             // 
             // btnRegistrar
             // 
-            this.btnRegistrar.Location = new System.Drawing.Point(34, 376);
+            this.btnRegistrar.Location = new System.Drawing.Point(408, 431);
             this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(137, 38);
+            this.btnRegistrar.Size = new System.Drawing.Size(137, 48);
             this.btnRegistrar.TabIndex = 4;
-            this.btnRegistrar.Text = "Registrar Usuario";
+            this.btnRegistrar.Text = "REGISTRAR USUARIO";
             this.btnRegistrar.UseVisualStyleBackColor = true;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Location = new System.Drawing.Point(408, 34);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(388, 235);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
             // 
             // ScanQR
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(472, 445);
+            this.ClientSize = new System.Drawing.Size(891, 559);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.pictureBox1);
