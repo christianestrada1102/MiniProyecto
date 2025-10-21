@@ -16,5 +16,10 @@ namespace MiniProyecto
         {
             InitializeComponent();
         }
+
+        private void panelLogo_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
