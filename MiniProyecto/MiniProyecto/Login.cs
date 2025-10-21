@@ -32,14 +32,8 @@ namespace MiniProyecto
             {
                 MessageBox.Show("Inicio de sesión exitoso.", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Crear instancia del formulario AnimacionInicio
-                AnimacionInicio animacion = new AnimacionInicio();
-
-                // Mostrar el formulario de animación
-                animacion.Show();
-
-                // Ocultar el formulario de login
-                this.Hide();
+                // No abrir AnimacionInicio; indicar éxito para que Program.Main inicie panelLogo
+                this.DialogResult = DialogResult.OK;
             }
             else
             {

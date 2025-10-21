@@ -201,5 +201,11 @@
   <ItemGroup>
     <None Include="Resources\Gemini_Generated_Image_40n5m640n5m640n5.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WhatsApp Image 2025-10-21 at 9.35.00 AM.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tacha.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

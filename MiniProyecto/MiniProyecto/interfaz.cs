@@ -12,6 +12,7 @@ namespace MiniProyecto
 {
     public partial class panelLogo : Form
     {
+        private Form activeForm;
         public panelLogo()
         {
             InitializeComponent();
@@ -21,5 +22,18 @@ namespace MiniProyecto
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+         if(activeForm!=null)
+                activeForm.Close();
+          //  Reset();
+        }
+       /* private void Reset()
+        {
+            Disablebutton1();
+            lblTitle.Text = "INICIO";
+
+        }*/
     }
 }

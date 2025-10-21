@@ -37,6 +37,7 @@
             this.titleBar = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -136,6 +137,7 @@
             // titleBar
             // 
             this.titleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.titleBar.Controls.Add(this.button1);
             this.titleBar.Controls.Add(this.label1);
             this.titleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.titleBar.Location = new System.Drawing.Point(219, 0);
@@ -151,19 +153,32 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(182, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(184, 31);
+            this.label1.Size = new System.Drawing.Size(160, 31);
             this.label1.TabIndex = 0;
-            this.label1.Text = "GYM POWER";
+            this.label1.Text = "GYMNASIO";
             // 
             // pictureBox4
             // 
-            this.pictureBox4.BackgroundImage = global::MiniProyecto.Properties.Resources.Gemini_Generated_Image_40n5m640n5m640n5;
+            this.pictureBox4.BackgroundImage = global::MiniProyecto.Properties.Resources.WhatsApp_Image_2025_10_21_at_9_35_00_AM;
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox4.Location = new System.Drawing.Point(219, 85);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(581, 393);
             this.pictureBox4.TabIndex = 2;
             this.pictureBox4.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.BackgroundImage = global::MiniProyecto.Properties.Resources.tacha;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(6, 35);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(30, 24);
+            this.button1.TabIndex = 1;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // pictureBox3
             // 
@@ -234,5 +249,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Button button1;
     }
 }
