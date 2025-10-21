@@ -17,7 +17,6 @@ namespace MiniProyecto
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new AdminUsuarios());
 
 
             // Mostrar el login como diálogo; si devuelve OK, iniciar la interfaz principal
