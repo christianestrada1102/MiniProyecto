@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace MiniProyecto
 {
@@ -24,9 +17,10 @@ namespace MiniProyecto
         private void AdminUsuarios_Load(object sender, EventArgs e)
         {
             // ⭐ AGREGAR OPCIONES AL COMBOBOX
-            cmbTipoMembresia.Items.Add("Mes");
-            cmbTipoMembresia.Items.Add("Semana");
-            cmbTipoMembresia.Items.Add("Año");
+            cmbTipoMembresia.Items.Add("dia");
+            cmbTipoMembresia.Items.Add("semana");
+            cmbTipoMembresia.Items.Add("mes");
+            cmbTipoMembresia.Items.Add("año");
 
             // ⭐ CARGAR TODOS LOS USUARIOS AL ABRIR
             CargarUsuarios();
@@ -61,12 +55,12 @@ namespace MiniProyecto
                 // ⭐ OBTENER EL ID
                 idSeleccionado = Convert.ToInt32(fila.Cells["id"].Value);
 
-                // Rellenar los campos con los datos de la fila
-                txtNombre.Text = fila.Cells["nombre"].Value.ToString();
-                txtApellido.Text = fila.Cells["apellido"].Value.ToString();
+                // ✅ USAR NOMBRES CORRECTOS DE COLUMNAS: nom, apell, edad, fecha_inc, member
+                txtNombre.Text = fila.Cells["nom"].Value.ToString();
+                txtApellido.Text = fila.Cells["apell"].Value.ToString();
                 txtEdad.Text = fila.Cells["edad"].Value.ToString();
-                dateTimePicker1.Value = Convert.ToDateTime(fila.Cells["fechaini"].Value);
-                cmbTipoMembresia.SelectedItem = fila.Cells["tipomembresia"].Value.ToString();
+                dateTimePicker1.Value = Convert.ToDateTime(fila.Cells["fecha_inc"].Value);
+                cmbTipoMembresia.SelectedItem = fila.Cells["member"].Value.ToString();
 
                 // ⭐ RECALCULAR LA FECHA FIN AUTOMÁTICAMENTE
                 CalcularFechaFin();
@@ -93,17 +87,21 @@ namespace MiniProyecto
 
             DateTime fechaInicio = dateTimePicker1.Value;
             DateTime fechaFin;
-            string tipoSeleccionado = cmbTipoMembresia.SelectedItem.ToString();
+            string tipoSeleccionado = cmbTipoMembresia.SelectedItem.ToString().ToLower();
 
-            if (tipoSeleccionado == "Mes")
+            if (tipoSeleccionado == "dia" || tipoSeleccionado == "día")
             {
-                fechaFin = fechaInicio.AddMonths(1);
+                fechaFin = fechaInicio.AddDays(1);
             }
-            else if (tipoSeleccionado == "Semana")
+            else if (tipoSeleccionado == "semana")
             {
                 fechaFin = fechaInicio.AddDays(7);
             }
-            else if (tipoSeleccionado == "Año")
+            else if (tipoSeleccionado == "mes")
+            {
+                fechaFin = fechaInicio.AddMonths(1);
+            }
+            else if (tipoSeleccionado == "año" || tipoSeleccionado == "ano")
             {
                 fechaFin = fechaInicio.AddYears(1);
             }
@@ -120,14 +118,10 @@ namespace MiniProyecto
         // ⭐ CREAR - NUEVO USUARIO
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            // ⭐ ABRIR EL FORMULARIO DE REGISTRO
-            Registro formRegistro = new Registro();
-            formRegistro.ShowDialog();
-
-            // Después de cerrar el formulario, recargar los usuarios
-            CargarUsuarios();
+            // ⭐ Limpiar campos para crear nuevo usuario
             LimpiarCampos();
             idSeleccionado = -1;
+            txtNombre.Focus();
         }
 
         // ⭐ GUARDAR - CREAR O ACTUALIZAR
@@ -146,29 +140,62 @@ namespace MiniProyecto
                 return;
             }
 
+            if (!int.TryParse(txtEdad.Text, out int edad) || edad <= 0)
+            {
+                MessageBox.Show("Por favor ingresa una edad válida", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             string nombre = txtNombre.Text;
             string apellido = txtApellido.Text;
-            int edad = Convert.ToInt32(txtEdad.Text);
             DateTime fechaInicio = dateTimePicker1.Value;
             DateTime fechaTermino = dateTimePicker2.Value;
             string tipoMembresia = cmbTipoMembresia.SelectedItem.ToString();
 
             if (idSeleccionado == -1)
             {
-                // CREAR nuevo usuario
-                if (bd.InsertarUsuario(nombre, apellido, edad, fechaInicio, fechaTermino, tipoMembresia))
+                // CREAR nuevo usuario - generar código QR automáticamente
+                string codigoQR = Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
+
+                if (bd.InsertarUsuario(nombre, apellido, edad, fechaInicio, fechaTermino, tipoMembresia, codigoQR))
                 {
-                    MessageBox.Show("Usuario creado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"✅ Usuario creado correctamente.\n\nCódigo QR generado: {codigoQR}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarUsuarios();
                     LimpiarCampos();
                 }
             }
             else
             {
-                // ACTUALIZAR usuario existente
-                if (bd.ActualizarUsuario(idSeleccionado, nombre, apellido, edad, fechaInicio, fechaTermino, tipoMembresia))
+                // ACTUALIZAR usuario existente - mantener código QR existente
+                string codigoQRExistente = "";
+
+                try
                 {
-                    MessageBox.Show("Usuario actualizado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DataTable usuario = bd.ObtenerUsuarioPorID(idSeleccionado);
+                    if (usuario != null && usuario.Rows.Count > 0)
+                    {
+                        // Obtener el código QR existente
+                        codigoQRExistente = usuario.Rows[0]["codigo_qr"]?.ToString() ?? "";
+
+                        // Si no tiene código QR, generar uno nuevo
+                        if (string.IsNullOrEmpty(codigoQRExistente))
+                        {
+                            codigoQRExistente = Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
+                        }
+                    }
+                    else
+                    {
+                        codigoQRExistente = Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
+                    }
+                }
+                catch
+                {
+                    codigoQRExistente = Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
+                }
+
+                if (bd.ActualizarUsuario(idSeleccionado, nombre, apellido, edad, fechaInicio, fechaTermino, tipoMembresia, codigoQRExistente))
+                {
+                    MessageBox.Show("✅ Usuario actualizado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarUsuarios();
                     LimpiarCampos();
                     idSeleccionado = -1;
@@ -192,7 +219,7 @@ namespace MiniProyecto
             {
                 if (bd.EliminarUsuario(idSeleccionado))
                 {
-                    MessageBox.Show("Usuario eliminado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("✅ Usuario eliminado correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarUsuarios();
                     LimpiarCampos();
                     idSeleccionado = -1;
@@ -210,6 +237,7 @@ namespace MiniProyecto
             dateTimePicker2.Value = DateTime.Today;
             dateTimePicker2.Enabled = false;
             cmbTipoMembresia.SelectedIndex = -1;
+            idSeleccionado = -1;
         }
 
         // ⭐ BÚSQUEDA

@@ -11,7 +11,7 @@ namespace MiniProyecto
         private string cadenaConexion = @"Server=10.1.124.168;Port=3306;Database=pruebasgestiongym;Uid=GestionGym;Pwd=chris_kikin;";
 
         // ⭐ CREAR
-        public bool InsertarUsuario(string nombre, string apellido, int edad, DateTime fechaInicio, DateTime fechaTermino, string tipoMembresia)
+        public bool InsertarUsuario(string nom, string apell, int edad, DateTime fecha_inc, DateTime fecha_fin, string member, string codigo_qr)
         {
             try
             {
@@ -19,17 +19,18 @@ namespace MiniProyecto
                 {
                     conexion.Open();
 
-                    string consulta = "INSERT INTO pruebas (nombre, apellido, edad, fechaini, fechafin, tipomembresia) " +
-                                      "VALUES (@nombre, @apellido, @edad, @fechaInicio, @fechaTermino, @tipoMembresia)";
+                    string consulta = "INSERT INTO pruebas (nom, apell, edad, fecha_inc, fecha_fin, member, codigo_qr) " +
+                                      "VALUES (@nom, @apell, @edad, @fecha_inc, @fecha_fin, @member, @codigo_qr)";
 
                     using (MySqlCommand comando = new MySqlCommand(consulta, conexion))
                     {
-                        comando.Parameters.AddWithValue("@nombre", nombre);
-                        comando.Parameters.AddWithValue("@apellido", apellido);
+                        comando.Parameters.AddWithValue("@nom", nom);
+                        comando.Parameters.AddWithValue("@apell", apell);
                         comando.Parameters.AddWithValue("@edad", edad);
-                        comando.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-                        comando.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-                        comando.Parameters.AddWithValue("@tipoMembresia", tipoMembresia);
+                        comando.Parameters.AddWithValue("@fecha_inc", fecha_inc);
+                        comando.Parameters.AddWithValue("@fecha_fin", fecha_fin);
+                        comando.Parameters.AddWithValue("@member", member);
+                        comando.Parameters.AddWithValue("@codigo_qr", codigo_qr);
 
                         comando.ExecuteNonQuery();
                         return true;
@@ -68,18 +69,19 @@ namespace MiniProyecto
         }
 
         // ⭐ LEER - BUSCAR POR NOMBRE O APELLIDO
-        public DataTable BuscarUsuario(string nombre)
+        public DataTable BuscarUsuario(string busqueda)
         {
             try
             {
                 using (MySqlConnection conexion = new MySqlConnection(cadenaConexion))
                 {
                     conexion.Open();
-                    string consulta = "SELECT * FROM pruebas WHERE nombre LIKE @nombre OR apellido LIKE @nombre";
+                    // ✅ CORREGIDO: usar nom y apell (nombres reales de columnas)
+                    string consulta = "SELECT * FROM pruebas WHERE nom LIKE @busqueda OR apell LIKE @busqueda";
 
                     using (MySqlCommand comando = new MySqlCommand(consulta, conexion))
                     {
-                        comando.Parameters.AddWithValue("@nombre", "%" + nombre + "%");
+                        comando.Parameters.AddWithValue("@busqueda", "%" + busqueda + "%");
 
                         MySqlDataAdapter adaptador = new MySqlDataAdapter(comando);
                         DataTable datos = new DataTable();
@@ -97,7 +99,7 @@ namespace MiniProyecto
         }
 
         // ⭐ ACTUALIZAR
-        public bool ActualizarUsuario(int id, string nombre, string apellido, int edad, DateTime fechaInicio, DateTime fechaTermino, string tipoMembresia)
+        public bool ActualizarUsuario(int id, string nom, string apell, int edad, DateTime fecha_inc, DateTime fecha_fin, string member, string codigo_qr)
         {
             try
             {
@@ -105,19 +107,21 @@ namespace MiniProyecto
                 {
                     conexion.Open();
 
-                    string consulta = "UPDATE pruebas SET nombre=@nombre, apellido=@apellido, edad=@edad, " +
-                                      "fechaini=@fechaInicio, fechafin=@fechaTermino, tipomembresia=@tipoMembresia " +
+                    // ✅ CORREGIDO: usar nom, apell, fecha_inc, fecha_fin, member, codigo_qr y agregar espacio antes de WHERE
+                    string consulta = "UPDATE pruebas SET nom=@nom, apell=@apell, edad=@edad, " +
+                                      "fecha_inc=@fecha_inc, fecha_fin=@fecha_fin, member=@member, codigo_qr=@codigo_qr " +
                                       "WHERE id=@id";
 
                     using (MySqlCommand comando = new MySqlCommand(consulta, conexion))
                     {
                         comando.Parameters.AddWithValue("@id", id);
-                        comando.Parameters.AddWithValue("@nombre", nombre);
-                        comando.Parameters.AddWithValue("@apellido", apellido);
+                        comando.Parameters.AddWithValue("@nom", nom);
+                        comando.Parameters.AddWithValue("@apell", apell);
                         comando.Parameters.AddWithValue("@edad", edad);
-                        comando.Parameters.AddWithValue("@fechaInicio", fechaInicio);
-                        comando.Parameters.AddWithValue("@fechaTermino", fechaTermino);
-                        comando.Parameters.AddWithValue("@tipoMembresia", tipoMembresia);
+                        comando.Parameters.AddWithValue("@fecha_inc", fecha_inc);
+                        comando.Parameters.AddWithValue("@fecha_fin", fecha_fin);
+                        comando.Parameters.AddWithValue("@member", member);
+                        comando.Parameters.AddWithValue("@codigo_qr", codigo_qr);
 
                         comando.ExecuteNonQuery();
                         return true;
