@@ -70,11 +70,6 @@ namespace MiniProyecto
                 this.Show();
             }
         }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-
-        }
         /* private void Reset()
 {
 Disablebutton1();
