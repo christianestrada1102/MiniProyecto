@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QRPrueba2.FormRegistroUsuario.cs;
 
 namespace MiniProyecto
 {
@@ -20,7 +21,7 @@ namespace MiniProyecto
 
         private void panelLogo_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -9,6 +9,7 @@ namespace MiniProyecto
     {
         // ✅ Conexión igual que la tuya
         private string cadenaConexion = @"Server=10.1.125.189;Port=3306;Database=pruebasgestiongym;Uid=GestionGym;Pwd=chris_kikin;";
+        private string cadenaConexion = @"Server=10.1.124.168;Port=3306;Database=pruebasgestiongym;Uid=GestionGym;Pwd=chris_kikin;";
 
         // ⭐ CREAR
         public bool InsertarUsuario(string nombre, string apellido, int edad, DateTime fechaInicio, DateTime fechaTermino, string tipoMembresia)
@@ -63,6 +64,7 @@ namespace MiniProyecto
             catch (Exception ex)
             {
                 MessageBox.Show("Error al obtener datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al obtener datos: " + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
