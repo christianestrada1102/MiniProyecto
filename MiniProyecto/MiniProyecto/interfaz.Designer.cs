@@ -81,6 +81,7 @@
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // btnQr
             // 
@@ -97,6 +98,7 @@
             this.btnQr.TabIndex = 2;
             this.btnQr.Text = "Qr";
             this.btnQr.UseVisualStyleBackColor = true;
+            this.btnQr.Click += new System.EventHandler(this.btnQr_Click);
             // 
             // btnUsuarios
             // 
@@ -113,6 +115,7 @@
             this.btnUsuarios.TabIndex = 1;
             this.btnUsuarios.Text = "Usuarios";
             this.btnUsuarios.UseVisualStyleBackColor = true;
+            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
             // 
             // panel1
             // 
