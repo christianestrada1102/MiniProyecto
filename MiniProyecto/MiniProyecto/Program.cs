@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +16,22 @@ namespace MiniProyecto
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             Application.Run(new Login());
+
+
+            Application.Run(new AdminUsuarios());
+
+
+            // Mostrar el login como diálogo; si devuelve OK, iniciar la interfaz principal
+            using (var login = new Login())
+            {
+                if (login.ShowDialog() == DialogResult.OK)
+                {
+                    Application.Run(new panelLogo());
+                }
+            }
+
         }
     }
 }

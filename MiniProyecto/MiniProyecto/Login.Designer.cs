@@ -33,60 +33,82 @@
             // 
             // pictureBoxIcon
             // 
-            this.pictureBoxIcon.Location = new System.Drawing.Point(120, 20);
+            this.pictureBoxIcon.Location = new System.Drawing.Point(355, 23);
+            this.pictureBoxIcon.Name = "pictureBoxIcon";
             this.pictureBoxIcon.Size = new System.Drawing.Size(80, 80);
             this.pictureBoxIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxIcon.TabIndex = 0;
+            this.pictureBoxIcon.TabStop = false;
             // 
             // lblTitle
             // 
-            this.lblTitle.Text = "Login to Your Account";
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Location = new System.Drawing.Point(60, 110);
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.Location = new System.Drawing.Point(295, 113);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(222, 28);
+            this.lblTitle.TabIndex = 1;
+            this.lblTitle.Text = "Login to Your Account";
             // 
             // lblUser
             // 
-            this.lblUser.Text = "Username";
             this.lblUser.AutoSize = true;
-            this.lblUser.Location = new System.Drawing.Point(50, 150);
+            this.lblUser.Location = new System.Drawing.Point(285, 153);
+            this.lblUser.Name = "lblUser";
+            this.lblUser.Size = new System.Drawing.Size(70, 16);
+            this.lblUser.TabIndex = 2;
+            this.lblUser.Text = "Username";
             // 
             // txtUser
             // 
-            this.txtUser.Location = new System.Drawing.Point(50, 170);
-            this.txtUser.Size = new System.Drawing.Size(200, 23);
+            this.txtUser.Location = new System.Drawing.Point(285, 173);
+            this.txtUser.Name = "txtUser";
+            this.txtUser.Size = new System.Drawing.Size(200, 22);
+            this.txtUser.TabIndex = 3;
             // 
             // lblPass
             // 
-            this.lblPass.Text = "Password";
             this.lblPass.AutoSize = true;
-            this.lblPass.Location = new System.Drawing.Point(50, 205);
+            this.lblPass.Location = new System.Drawing.Point(285, 208);
+            this.lblPass.Name = "lblPass";
+            this.lblPass.Size = new System.Drawing.Size(67, 16);
+            this.lblPass.TabIndex = 4;
+            this.lblPass.Text = "Password";
             // 
             // txtPass
             // 
-            this.txtPass.Location = new System.Drawing.Point(50, 225);
-            this.txtPass.Size = new System.Drawing.Size(200, 23);
+            this.txtPass.Location = new System.Drawing.Point(285, 228);
+            this.txtPass.Name = "txtPass";
+            this.txtPass.Size = new System.Drawing.Size(200, 22);
+            this.txtPass.TabIndex = 5;
             this.txtPass.UseSystemPasswordChar = true;
             // 
             // chkShowPass
             // 
-            this.chkShowPass.Text = "Mostrar contraseña";
             this.chkShowPass.AutoSize = true;
-            this.chkShowPass.Location = new System.Drawing.Point(50, 255);
+            this.chkShowPass.Location = new System.Drawing.Point(285, 258);
+            this.chkShowPass.Name = "chkShowPass";
+            this.chkShowPass.Size = new System.Drawing.Size(144, 20);
+            this.chkShowPass.TabIndex = 6;
+            this.chkShowPass.Text = "Mostrar contraseña";
             this.chkShowPass.CheckedChanged += new System.EventHandler(this.chkShowPass_CheckedChanged);
             // 
             // btnLogin
             // 
-            this.btnLogin.Text = "Login";
             this.btnLogin.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnLogin.ForeColor = System.Drawing.Color.White;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogin.Location = new System.Drawing.Point(50, 290);
+            this.btnLogin.ForeColor = System.Drawing.Color.White;
+            this.btnLogin.Location = new System.Drawing.Point(285, 293);
+            this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(200, 35);
+            this.btnLogin.TabIndex = 7;
+            this.btnLogin.Text = "Login";
+            this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // Login
             // 
-            this.ClientSize = new System.Drawing.Size(300, 370);
+            this.ClientSize = new System.Drawing.Size(869, 510);
             this.Controls.Add(this.pictureBoxIcon);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lblUser);
@@ -97,11 +119,13 @@
             this.Controls.Add(this.btnLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
+            this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
