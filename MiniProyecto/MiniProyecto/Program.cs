@@ -16,7 +16,7 @@ namespace MiniProyecto
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
+            
             // Mostrar el login como diálogo; si devuelve OK, iniciar la interfaz principal
             using (var login = new Login())
             {
