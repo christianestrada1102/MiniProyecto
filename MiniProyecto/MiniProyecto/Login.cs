@@ -72,5 +72,10 @@ namespace MiniProyecto
             FormRegistrar registro = new FormRegistrar();
             registro.ShowDialog();
         }
+
+        private void lblSignupText_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

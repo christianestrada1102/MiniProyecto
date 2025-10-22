@@ -250,5 +250,11 @@
   <ItemGroup>
     <None Include="Resources\tacha.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loadingggggg.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconqr.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

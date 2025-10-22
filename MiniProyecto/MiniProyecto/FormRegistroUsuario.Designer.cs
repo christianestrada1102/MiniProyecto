@@ -60,7 +60,7 @@
             // 
             this.lblNombre.AutoSize = true;
             this.lblNombre.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblNombre.Location = new System.Drawing.Point(30, 28);
+            this.lblNombre.Location = new System.Drawing.Point(31, 70);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(77, 23);
             this.lblNombre.TabIndex = 25;
@@ -69,7 +69,7 @@
             // txtNombre
             // 
             this.txtNombre.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtNombre.Location = new System.Drawing.Point(150, 26);
+            this.txtNombre.Location = new System.Drawing.Point(151, 68);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(220, 30);
             this.txtNombre.TabIndex = 24;
@@ -78,7 +78,7 @@
             // 
             this.lblApellido.AutoSize = true;
             this.lblApellido.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblApellido.Location = new System.Drawing.Point(30, 68);
+            this.lblApellido.Location = new System.Drawing.Point(31, 110);
             this.lblApellido.Name = "lblApellido";
             this.lblApellido.Size = new System.Drawing.Size(76, 23);
             this.lblApellido.TabIndex = 23;
@@ -87,7 +87,7 @@
             // txtApellido
             // 
             this.txtApellido.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtApellido.Location = new System.Drawing.Point(150, 66);
+            this.txtApellido.Location = new System.Drawing.Point(151, 108);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(220, 30);
             this.txtApellido.TabIndex = 22;
@@ -96,7 +96,7 @@
             // 
             this.labelEdad.AutoSize = true;
             this.labelEdad.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.labelEdad.Location = new System.Drawing.Point(30, 108);
+            this.labelEdad.Location = new System.Drawing.Point(31, 150);
             this.labelEdad.Name = "labelEdad";
             this.labelEdad.Size = new System.Drawing.Size(52, 23);
             this.labelEdad.TabIndex = 21;
@@ -105,7 +105,7 @@
             // txtEdad
             // 
             this.txtEdad.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtEdad.Location = new System.Drawing.Point(150, 106);
+            this.txtEdad.Location = new System.Drawing.Point(151, 148);
             this.txtEdad.Name = "txtEdad";
             this.txtEdad.Size = new System.Drawing.Size(220, 30);
             this.txtEdad.TabIndex = 20;
@@ -114,7 +114,7 @@
             // 
             this.lblMembresia.AutoSize = true;
             this.lblMembresia.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblMembresia.Location = new System.Drawing.Point(30, 148);
+            this.lblMembresia.Location = new System.Drawing.Point(31, 190);
             this.lblMembresia.Name = "lblMembresia";
             this.lblMembresia.Size = new System.Drawing.Size(98, 23);
             this.lblMembresia.TabIndex = 19;
@@ -123,7 +123,7 @@
             // txtMembresia
             // 
             this.txtMembresia.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtMembresia.Location = new System.Drawing.Point(150, 146);
+            this.txtMembresia.Location = new System.Drawing.Point(151, 188);
             this.txtMembresia.Name = "txtMembresia";
             this.txtMembresia.Size = new System.Drawing.Size(220, 30);
             this.txtMembresia.TabIndex = 18;
@@ -133,7 +133,7 @@
             // 
             this.labelInicio.AutoSize = true;
             this.labelInicio.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.labelInicio.Location = new System.Drawing.Point(30, 188);
+            this.labelInicio.Location = new System.Drawing.Point(31, 230);
             this.labelInicio.Name = "labelInicio";
             this.labelInicio.Size = new System.Drawing.Size(127, 23);
             this.labelInicio.TabIndex = 17;
@@ -143,7 +143,7 @@
             // 
             this.dtInicio.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtInicio.Location = new System.Drawing.Point(150, 186);
+            this.dtInicio.Location = new System.Drawing.Point(151, 228);
             this.dtInicio.Name = "dtInicio";
             this.dtInicio.Size = new System.Drawing.Size(220, 27);
             this.dtInicio.TabIndex = 16;
@@ -153,7 +153,7 @@
             // 
             this.labelFin.AutoSize = true;
             this.labelFin.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.labelFin.Location = new System.Drawing.Point(30, 228);
+            this.labelFin.Location = new System.Drawing.Point(31, 270);
             this.labelFin.Name = "labelFin";
             this.labelFin.Size = new System.Drawing.Size(106, 23);
             this.labelFin.TabIndex = 15;
@@ -163,7 +163,7 @@
             // 
             this.dtFin.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFin.Location = new System.Drawing.Point(150, 226);
+            this.dtFin.Location = new System.Drawing.Point(151, 268);
             this.dtFin.Name = "dtFin";
             this.dtFin.Size = new System.Drawing.Size(220, 27);
             this.dtFin.TabIndex = 14;
@@ -175,7 +175,7 @@
             this.btnGenerarQR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerarQR.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnGenerarQR.ForeColor = System.Drawing.Color.White;
-            this.btnGenerarQR.Location = new System.Drawing.Point(30, 290);
+            this.btnGenerarQR.Location = new System.Drawing.Point(31, 332);
             this.btnGenerarQR.Name = "btnGenerarQR";
             this.btnGenerarQR.Size = new System.Drawing.Size(340, 40);
             this.btnGenerarQR.TabIndex = 12;
@@ -185,9 +185,9 @@
             // 
             // pictureBoxQR
             // 
-            this.pictureBoxQR.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictureBoxQR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxQR.Location = new System.Drawing.Point(420, 26);
+            this.pictureBoxQR.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pictureBoxQR.Image = global::MiniProyecto.Properties.Resources.loadingggggg;
+            this.pictureBoxQR.Location = new System.Drawing.Point(421, 68);
             this.pictureBoxQR.Name = "pictureBoxQR";
             this.pictureBoxQR.Size = new System.Drawing.Size(320, 304);
             this.pictureBoxQR.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -199,7 +199,7 @@
             // 
             this.lblDiasRestantes.AutoSize = true;
             this.lblDiasRestantes.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblDiasRestantes.Location = new System.Drawing.Point(150, 262);
+            this.lblDiasRestantes.Location = new System.Drawing.Point(151, 304);
             this.lblDiasRestantes.Name = "lblDiasRestantes";
             this.lblDiasRestantes.Size = new System.Drawing.Size(115, 20);
             this.lblDiasRestantes.TabIndex = 13;
@@ -210,7 +210,7 @@
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(31, 25);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(30, 32);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -223,7 +223,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(760, 360);
+            this.ClientSize = new System.Drawing.Size(879, 441);
             this.Controls.Add(this.pictureBoxQR);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnGenerarQR);
