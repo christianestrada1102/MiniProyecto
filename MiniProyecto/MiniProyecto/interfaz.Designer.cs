@@ -39,6 +39,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.titleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.panelContenido.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -184,23 +185,23 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(259, 28);
+            this.label1.Location = new System.Drawing.Point(203, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 31);
+            this.label1.Size = new System.Drawing.Size(171, 31);
             this.label1.TabIndex = 0;
-            this.label1.Text = "GYM";
+            this.label1.Text = "KOKOSGYM";
             // 
             // pictureBox4
             // 
             this.pictureBox4.BackgroundImage = global::MiniProyecto.Properties.Resources.WhatsApp_Image_2025_10_21_at_9_35_00_AM;
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Location = new System.Drawing.Point(219, 85);
+            this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox4.Location = new System.Drawing.Point(0, 0);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(581, 393);
             this.pictureBox4.TabIndex = 2;
             this.pictureBox4.TabStop = false;
             this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
-            this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             // 
             // panelContenido
             // 
@@ -221,7 +222,6 @@
             this.Controls.Add(this.titleBar);
             this.Controls.Add(this.panelMenu);
             this.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 7.8F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             this.MinimumSize = new System.Drawing.Size(700, 400);
             this.Name = "panelLogo";
             this.Text = "interfaz";
@@ -234,6 +234,7 @@
             this.titleBar.ResumeLayout(false);
             this.titleBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.panelContenido.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
