@@ -7,7 +7,7 @@ namespace QRprueba2
     {
         public static MySqlConnection ObtenerConexion()
         {
-            string servidor = "192.168.100.172"; // 🔹 IP del servidor remoto
+            string servidor = "10.1.125.189"; // 🔹 IP del servidor remoto
             string bd = "pruebasgestiongym";  // 🔹 Base de datos
             string usuario = "GestionGym";    // 🔹 Usuario del servidor MySQL
             string password = "chris_kikin";  // 🔹 Contraseña
