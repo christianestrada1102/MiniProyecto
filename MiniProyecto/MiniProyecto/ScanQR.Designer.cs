@@ -40,7 +40,7 @@
             // 
             this.btnIniciar.BackColor = System.Drawing.Color.SteelBlue;
             this.btnIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIniciar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnIniciar.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIniciar.ForeColor = System.Drawing.Color.White;
             this.btnIniciar.Location = new System.Drawing.Point(300, 462);
             this.btnIniciar.Name = "btnIniciar";
@@ -53,11 +53,11 @@
             // lblResultado
             // 
             this.lblResultado.AutoSize = true;
-            this.lblResultado.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblResultado.Font = new System.Drawing.Font("Microsoft YaHei", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblResultado.ForeColor = System.Drawing.Color.Black;
             this.lblResultado.Location = new System.Drawing.Point(21, 436);
             this.lblResultado.Name = "lblResultado";
-            this.lblResultado.Size = new System.Drawing.Size(169, 23);
+            this.lblResultado.Size = new System.Drawing.Size(179, 23);
             this.lblResultado.TabIndex = 3;
             this.lblResultado.Text = "Esperando escaneo...";
             // 
