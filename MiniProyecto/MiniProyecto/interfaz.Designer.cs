@@ -194,16 +194,17 @@
             // 
             this.pictureBox4.BackgroundImage = global::MiniProyecto.Properties.Resources.WhatsApp_Image_2025_10_21_at_9_35_00_AM;
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox4.Location = new System.Drawing.Point(219, 85);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(581, 393);
             this.pictureBox4.TabIndex = 2;
             this.pictureBox4.TabStop = false;
             this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             // 
             // panelContenido
             // 
+            this.panelContenido.Controls.Add(this.pictureBox4);
             this.panelContenido.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenido.Location = new System.Drawing.Point(219, 85);
             this.panelContenido.Name = "panelContenido";
@@ -217,10 +218,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 478);
             this.Controls.Add(this.panelContenido);
-            this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.titleBar);
             this.Controls.Add(this.panelMenu);
             this.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 7.8F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+            this.MinimumSize = new System.Drawing.Size(700, 400);
             this.Name = "panelLogo";
             this.Text = "interfaz";
             this.Load += new System.EventHandler(this.panelLogo_Load);
