@@ -8,7 +8,7 @@ namespace MiniProyecto
     public partial class ConexionBD
     {
         // ✅ Mantén tu IP actual y datos correctos del servidor
-        private readonly string servidor = "192.168.0.14";
+        private readonly string servidor = "10.1.124.139";
         private readonly string puerto = "3306";
         private readonly string bd = "pruebasgestiongym";
         private readonly string usuario = "GestionGym";

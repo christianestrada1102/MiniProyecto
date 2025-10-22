@@ -31,7 +31,7 @@ namespace TuProyecto
                 return;
             }
 
-            string conexion = "server=192.168.0.14;database=pruebasgestiongym;uid=GestionGym;pwd=chris_kikin;";
+            string conexion = "server=10.1.124.139;database=pruebasgestiongym;uid=GestionGym;pwd=chris_kikin;";
 
             using (MySqlConnection conn = new MySqlConnection(conexion))
             {
