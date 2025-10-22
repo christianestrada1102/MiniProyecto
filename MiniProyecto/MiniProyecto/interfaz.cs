@@ -14,26 +14,24 @@ namespace MiniProyecto
 
         private void panelLogo_Load(object sender, EventArgs e)
         {
-            // 🔹 Inicia en tamaño normal
-            this.WindowState = FormWindowState.Normal;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // Cierra el formulario hijo activo (si hay uno abierto)
             if (activeForm != null)
             {
                 activeForm.Close();
                 activeForm = null;
             }
 
+            // Vuelve a mostrar la imagen principal
             pictureBox4.Visible = true;
         }
 
         private void btnQr_Click(object sender, EventArgs e)
         {
-            // 🔹 Vuelve al tamaño normal si estaba maximizado
-            this.WindowState = FormWindowState.Normal;
-
+            // ✅ Solo este botón funcionará
             OpenChildForm(new ScanQR());
         }
 
@@ -41,6 +39,7 @@ namespace MiniProyecto
         {
         }
 
+        // Método para abrir formularios dentro del panelContenido
         private void OpenChildForm(Form childForm)
         {
             if (activeForm != null)
@@ -60,38 +59,33 @@ namespace MiniProyecto
 
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
-            // 🔹 Solo aquí se pone en pantalla completa
-            this.WindowState = FormWindowState.Maximized;
-
             OpenChildForm(new AdminUsuarios());
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            // 🔹 También vuelve al tamaño normal
-            this.WindowState = FormWindowState.Normal;
-
+            // Cierra cualquier formulario hijo activo
             if (activeForm != null)
             {
                 activeForm.Close();
                 activeForm = null;
             }
 
+            // Oculta este formulario temporalmente
             this.Hide();
 
+            // Abre el login de forma modal (bloquea hasta que se cierre)
             using (Login login = new Login())
             {
                 login.ShowDialog();
             }
 
+            // Cuando se cierre el Login, vuelve a mostrar este formulario
             this.Show();
         }
 
         private void RegButton_Click(object sender, EventArgs e)
         {
-            // 🔹 Vuelve al tamaño normal
-            this.WindowState = FormWindowState.Normal;
-
             OpenChildForm(new FormRegistroUsuario());
         }
 
