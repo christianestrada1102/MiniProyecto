@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Windows.Forms;
+using TuProyecto;
 
 namespace MiniProyecto
 {
@@ -20,25 +22,55 @@ namespace MiniProyecto
             string usuario = txtUser.Text.Trim();
             string contraseña = txtPass.Text.Trim();
 
-            // Verificar que los campos no estén vacíos
             if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(contraseña))
             {
                 MessageBox.Show("Por favor completa todos los campos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Validar usuario y contraseña (ambos son 'admin')
-            if (usuario == "admin" && contraseña == "admin")
-            {
-                MessageBox.Show("Inicio de sesión exitoso.", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // ✅ Conexión a tu base de datos
+            string conexion = "server=192.168.0.14;database=pruebasgestiongym;uid=GestionGym;pwd=chris_kikin;";
 
-                // No abrir AnimacionInicio; indicar éxito para que Program.Main inicie panelLogo
-                this.DialogResult = DialogResult.OK;
-            }
-            else
+            using (MySqlConnection conn = new MySqlConnection(conexion))
             {
-                MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                try
+                {
+                    conn.Open();
+
+                    // ✅ Consulta que valida si existe el usuario y contraseña
+                    string query = "SELECT COUNT(*) FROM usuarios WHERE nombre_usuario = @user AND contrasena = @pass";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@user", usuario);
+                    cmd.Parameters.AddWithValue("@pass", contraseña);
+
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    if (count > 0)
+                    {
+                        MessageBox.Show("Inicio de sesión exitoso.", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al conectar con la base de datos: " + ex.Message);
+                }
             }
+        }
+
+        private void Login_Load(object sender, EventArgs e) { }
+
+        private void pnlRight_Paint(object sender, PaintEventArgs e) { }
+
+        private void lnkSignup_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FormRegistrar registro = new FormRegistrar();
+            registro.ShowDialog();
         }
     }
 }
