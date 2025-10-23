@@ -17,7 +17,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.pnlLeft = new System.Windows.Forms.Panel();
-            this.lblWelcome = new System.Windows.Forms.Label();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.pnlRight = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -38,37 +37,24 @@
             // pnlLeft
             // 
             this.pnlLeft.BackColor = System.Drawing.Color.SteelBlue;
-            this.pnlLeft.Controls.Add(this.lblWelcome);
             this.pnlLeft.Controls.Add(this.picLogo);
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlLeft.Location = new System.Drawing.Point(0, 0);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(350, 500);
+            this.pnlLeft.Size = new System.Drawing.Size(402, 500);
             this.pnlLeft.TabIndex = 0;
-            // 
-            // lblWelcome
-            // 
-            this.lblWelcome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblWelcome.Font = new System.Drawing.Font("Microsoft YaHei", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWelcome.ForeColor = System.Drawing.Color.White;
-            this.lblWelcome.Location = new System.Drawing.Point(3, 150);
-            this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(350, 40);
-            this.lblWelcome.TabIndex = 1;
-            this.lblWelcome.Text = "WELCOME TO";
-            this.lblWelcome.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // picLogo
             // 
             this.picLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.picLogo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picLogo.BackgroundImage")));
+            this.picLogo.BackColor = System.Drawing.Color.Black;
             this.picLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picLogo.Location = new System.Drawing.Point(-29, 74);
+            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
+            this.picLogo.Location = new System.Drawing.Point(0, 0);
             this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(397, 356);
-            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picLogo.Size = new System.Drawing.Size(402, 497);
+            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picLogo.TabIndex = 0;
             this.picLogo.TabStop = false;
             // 
@@ -86,9 +72,9 @@
             this.pnlRight.Controls.Add(this.lblSignupText);
             this.pnlRight.Controls.Add(this.lnkSignup);
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlRight.Location = new System.Drawing.Point(350, 0);
+            this.pnlRight.Location = new System.Drawing.Point(402, 0);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(450, 500);
+            this.pnlRight.Size = new System.Drawing.Size(398, 500);
             this.pnlRight.TabIndex = 1;
             this.pnlRight.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlRight_Paint);
             // 
@@ -100,7 +86,7 @@
             this.lblTitle.ForeColor = System.Drawing.Color.SteelBlue;
             this.lblTitle.Location = new System.Drawing.Point(40, 40);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(370, 40);
+            this.lblTitle.Size = new System.Drawing.Size(318, 40);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "SIGN IN TO YOUR ACCOUNT";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -121,7 +107,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUser.Location = new System.Drawing.Point(80, 170);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(280, 22);
+            this.txtUser.Size = new System.Drawing.Size(228, 22);
             this.txtUser.TabIndex = 2;
             // 
             // lblPass
@@ -138,7 +124,7 @@
             // 
             this.txtPass.Location = new System.Drawing.Point(80, 230);
             this.txtPass.Name = "txtPass";
-            this.txtPass.Size = new System.Drawing.Size(280, 22);
+            this.txtPass.Size = new System.Drawing.Size(228, 22);
             this.txtPass.TabIndex = 4;
             this.txtPass.UseSystemPasswordChar = true;
             // 
@@ -224,7 +210,6 @@
         #endregion
 
         private System.Windows.Forms.Panel pnlLeft;
-        private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.Panel pnlRight;
         private System.Windows.Forms.Label lblTitle;

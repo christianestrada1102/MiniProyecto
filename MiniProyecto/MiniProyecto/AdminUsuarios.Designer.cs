@@ -2,278 +2,319 @@
 {
     partial class AdminUsuarios
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
-            {
                 components.Dispose();
-            }
             base.Dispose(disposing);
         }
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.pnlLeft = new System.Windows.Forms.Panel();
+            this.lblTitulo = new System.Windows.Forms.Label();
+            this.lblNombre = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
+            this.lblApellido = new System.Windows.Forms.Label();
             this.txtApellido = new System.Windows.Forms.TextBox();
+            this.lblEdad = new System.Windows.Forms.Label();
             this.txtEdad = new System.Windows.Forms.TextBox();
+            this.lblInicio = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.lblFin = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.lblTipo = new System.Windows.Forms.Label();
             this.cmbTipoMembresia = new System.Windows.Forms.ComboBox();
+            this.lblBuscar = new System.Windows.Forms.Label();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.pnlHeader = new System.Windows.Forms.Panel();
+            this.lblHeader = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.pnlLeft.SuspendLayout();
+            this.pnlHeader.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pnlLeft
-            // 
-            this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlLeft.Location = new System.Drawing.Point(0, 0);
-            this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(480, 484);
-            this.pnlLeft.TabIndex = 20;
             // 
             // dataGridView1
             // 
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(107)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            this.dataGridView1.ColumnHeadersHeight = 29;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(234)))), ((int)(((byte)(246)))));
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle18;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(480, 0);
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.GridColor = System.Drawing.Color.LightGray;
+            this.dataGridView1.Location = new System.Drawing.Point(400, 50);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.RowTemplate.Height = 28;
+            this.dataGridView1.Size = new System.Drawing.Size(680, 550);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellClick);
+            // 
+            // pnlLeft
+            // 
+            this.pnlLeft.BackColor = System.Drawing.Color.White;
+            this.pnlLeft.Controls.Add(this.lblTitulo);
+            this.pnlLeft.Controls.Add(this.lblNombre);
+            this.pnlLeft.Controls.Add(this.txtNombre);
+            this.pnlLeft.Controls.Add(this.lblApellido);
+            this.pnlLeft.Controls.Add(this.txtApellido);
+            this.pnlLeft.Controls.Add(this.lblEdad);
+            this.pnlLeft.Controls.Add(this.txtEdad);
+            this.pnlLeft.Controls.Add(this.lblInicio);
+            this.pnlLeft.Controls.Add(this.dateTimePicker1);
+            this.pnlLeft.Controls.Add(this.lblFin);
+            this.pnlLeft.Controls.Add(this.dateTimePicker2);
+            this.pnlLeft.Controls.Add(this.lblTipo);
+            this.pnlLeft.Controls.Add(this.cmbTipoMembresia);
+            this.pnlLeft.Controls.Add(this.lblBuscar);
+            this.pnlLeft.Controls.Add(this.txtBuscar);
+            this.pnlLeft.Controls.Add(this.btnGuardar);
+            this.pnlLeft.Controls.Add(this.btnEliminar);
+            this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlLeft.Location = new System.Drawing.Point(0, 50);
+            this.pnlLeft.Name = "pnlLeft";
+            this.pnlLeft.Padding = new System.Windows.Forms.Padding(20);
+            this.pnlLeft.Size = new System.Drawing.Size(400, 550);
+            this.pnlLeft.TabIndex = 1;
+            // 
+            // lblTitulo
+            // 
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.lblTitulo.Location = new System.Drawing.Point(25, 10);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(240, 28);
+            this.lblTitulo.TabIndex = 0;
+            this.lblTitulo.Text = "Información del Usuario";
+            // 
+            // lblNombre
+            // 
+            this.lblNombre.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.lblNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.lblNombre.Location = new System.Drawing.Point(46, 60);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(100, 23);
+            this.lblNombre.TabIndex = 1;
+            this.lblNombre.Text = "Nombre:";
             // 
             // txtNombre
             // 
-            this.txtNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNombre.Location = new System.Drawing.Point(56, 59);
+            this.txtNombre.Location = new System.Drawing.Point(167, 60);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(360, 22);
-            this.txtNombre.TabIndex = 1;
+            this.txtNombre.Size = new System.Drawing.Size(206, 22);
+            this.txtNombre.TabIndex = 2;
+            // 
+            // lblApellido
+            // 
+            this.lblApellido.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.lblApellido.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.lblApellido.Location = new System.Drawing.Point(46, 109);
+            this.lblApellido.Name = "lblApellido";
+            this.lblApellido.Size = new System.Drawing.Size(100, 23);
+            this.lblApellido.TabIndex = 3;
+            this.lblApellido.Text = "Apellido:";
             // 
             // txtApellido
             // 
-            this.txtApellido.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtApellido.Location = new System.Drawing.Point(209, 59);
+            this.txtApellido.Location = new System.Drawing.Point(167, 110);
             this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(207, 22);
-            this.txtApellido.TabIndex = 2;
+            this.txtApellido.Size = new System.Drawing.Size(206, 22);
+            this.txtApellido.TabIndex = 4;
+            // 
+            // lblEdad
+            // 
+            this.lblEdad.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.lblEdad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.lblEdad.Location = new System.Drawing.Point(46, 160);
+            this.lblEdad.Name = "lblEdad";
+            this.lblEdad.Size = new System.Drawing.Size(100, 23);
+            this.lblEdad.TabIndex = 5;
+            this.lblEdad.Text = "Edad:";
             // 
             // txtEdad
             // 
-            this.txtEdad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEdad.Location = new System.Drawing.Point(136, 111);
+            this.txtEdad.Location = new System.Drawing.Point(167, 160);
             this.txtEdad.Name = "txtEdad";
-            this.txtEdad.Size = new System.Drawing.Size(280, 22);
-            this.txtEdad.TabIndex = 3;
+            this.txtEdad.Size = new System.Drawing.Size(206, 22);
+            this.txtEdad.TabIndex = 6;
+            // 
+            // lblInicio
+            // 
+            this.lblInicio.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.lblInicio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.lblInicio.Location = new System.Drawing.Point(46, 210);
+            this.lblInicio.Name = "lblInicio";
+            this.lblInicio.Size = new System.Drawing.Size(47, 23);
+            this.lblInicio.TabIndex = 7;
+            this.lblInicio.Text = "Inicio Membresía:";
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(166, 148);
+            this.dateTimePicker1.Location = new System.Drawing.Point(129, 209);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(250, 22);
-            this.dateTimePicker1.TabIndex = 4;
+            this.dateTimePicker1.Size = new System.Drawing.Size(244, 22);
+            this.dateTimePicker1.TabIndex = 8;
+            // 
+            // lblFin
+            // 
+            this.lblFin.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.lblFin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.lblFin.Location = new System.Drawing.Point(46, 259);
+            this.lblFin.Name = "lblFin";
+            this.lblFin.Size = new System.Drawing.Size(42, 23);
+            this.lblFin.TabIndex = 9;
+            this.lblFin.Text = "Fin Membresía:";
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker2.Location = new System.Drawing.Point(166, 202);
+            this.dateTimePicker2.Location = new System.Drawing.Point(129, 259);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(250, 22);
-            this.dateTimePicker2.TabIndex = 5;
+            this.dateTimePicker2.Size = new System.Drawing.Size(244, 22);
+            this.dateTimePicker2.TabIndex = 10;
+            // 
+            // lblTipo
+            // 
+            this.lblTipo.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.lblTipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.lblTipo.Location = new System.Drawing.Point(12, 311);
+            this.lblTipo.Name = "lblTipo";
+            this.lblTipo.Size = new System.Drawing.Size(149, 23);
+            this.lblTipo.TabIndex = 11;
+            this.lblTipo.Text = "Tipo de Membresía:";
+            this.lblTipo.Click += new System.EventHandler(this.lblTipo_Click);
             // 
             // cmbTipoMembresia
             // 
-            this.cmbTipoMembresia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbTipoMembresia.FormattingEnabled = true;
-            this.cmbTipoMembresia.Location = new System.Drawing.Point(166, 249);
+            this.cmbTipoMembresia.Location = new System.Drawing.Point(167, 310);
             this.cmbTipoMembresia.Name = "cmbTipoMembresia";
-            this.cmbTipoMembresia.Size = new System.Drawing.Size(250, 24);
-            this.cmbTipoMembresia.TabIndex = 6;
+            this.cmbTipoMembresia.Size = new System.Drawing.Size(206, 24);
+            this.cmbTipoMembresia.TabIndex = 12;
+            // 
+            // lblBuscar
+            // 
+            this.lblBuscar.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.lblBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.lblBuscar.Location = new System.Drawing.Point(46, 395);
+            this.lblBuscar.Name = "lblBuscar";
+            this.lblBuscar.Size = new System.Drawing.Size(63, 23);
+            this.lblBuscar.TabIndex = 13;
+            this.lblBuscar.Text = "Buscar:";
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBuscar.Location = new System.Drawing.Point(166, 296);
+            this.txtBuscar.Location = new System.Drawing.Point(167, 396);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(250, 22);
-            this.txtBuscar.TabIndex = 7;
+            this.txtBuscar.Size = new System.Drawing.Size(206, 22);
+            this.txtBuscar.TabIndex = 14;
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnGuardar.Location = new System.Drawing.Point(53, 354);
+            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(160)))), ((int)(((byte)(71)))));
+            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            this.btnGuardar.ForeColor = System.Drawing.Color.White;
+            this.btnGuardar.Location = new System.Drawing.Point(50, 456);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(100, 30);
-            this.btnGuardar.TabIndex = 9;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Size = new System.Drawing.Size(120, 36);
+            this.btnGuardar.TabIndex = 15;
+            this.btnGuardar.Text = "💾 Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnEliminar.Location = new System.Drawing.Point(182, 354);
+            this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(83)))), ((int)(((byte)(80)))));
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            this.btnEliminar.ForeColor = System.Drawing.Color.White;
+            this.btnEliminar.Location = new System.Drawing.Point(230, 456);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(100, 30);
-            this.btnEliminar.TabIndex = 10;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Size = new System.Drawing.Size(120, 36);
+            this.btnEliminar.TabIndex = 16;
+            this.btnEliminar.Text = "🗑 Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // label1
+            // pnlHeader
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(77, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 16);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Nombre";
+            this.pnlHeader.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.pnlHeader.Controls.Add(this.lblHeader);
+            this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlHeader.Location = new System.Drawing.Point(0, 0);
+            this.pnlHeader.Name = "pnlHeader";
+            this.pnlHeader.Size = new System.Drawing.Size(1080, 50);
+            this.pnlHeader.TabIndex = 2;
             // 
-            // label2
+            // lblHeader
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(236, 40);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 16);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Apellido";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(163, 92);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 16);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "Edad";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(51, 154);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(109, 16);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Inicio Membresia";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(50, 252);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(106, 16);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Tipo membresia";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(54, 296);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(49, 16);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Buscar";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(51, 208);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(96, 16);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "Fin Membresia";
+            this.lblHeader.AutoSize = true;
+            this.lblHeader.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            this.lblHeader.ForeColor = System.Drawing.Color.White;
+            this.lblHeader.Location = new System.Drawing.Point(20, 10);
+            this.lblHeader.Name = "lblHeader";
+            this.lblHeader.Size = new System.Drawing.Size(283, 32);
+            this.lblHeader.TabIndex = 0;
+            this.lblHeader.Text = "👤 Gestión de Usuarios";
             // 
             // AdminUsuarios
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1066, 484);
-            // add controls in order so docking works: left panel then grid fills remaining space
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(1080, 600);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.pnlLeft);
-            // add input controls into pnlLeft
-            this.pnlLeft.Controls.Add(this.label8);
-            this.pnlLeft.Controls.Add(this.label7);
-            this.pnlLeft.Controls.Add(this.label6);
-            this.pnlLeft.Controls.Add(this.label4);
-            this.pnlLeft.Controls.Add(this.label3);
-            this.pnlLeft.Controls.Add(this.label2);
-            this.pnlLeft.Controls.Add(this.label1);
-            this.pnlLeft.Controls.Add(this.btnEliminar);
-            this.pnlLeft.Controls.Add(this.btnGuardar);
-            this.pnlLeft.Controls.Add(this.txtBuscar);
-            this.pnlLeft.Controls.Add(this.cmbTipoMembresia);
-            this.pnlLeft.Controls.Add(this.dateTimePicker2);
-            this.pnlLeft.Controls.Add(this.dateTimePicker1);
-            this.pnlLeft.Controls.Add(this.txtEdad);
-            this.pnlLeft.Controls.Add(this.txtApellido);
-            this.pnlLeft.Controls.Add(this.txtNombre);
+            this.Controls.Add(this.pnlHeader);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AdminUsuarios";
-            this.Text = "Form2";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Administrar Usuarios";
             this.Load += new System.EventHandler(this.AdminUsuarios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.pnlLeft.ResumeLayout(false);
             this.pnlLeft.PerformLayout();
+            this.pnlHeader.ResumeLayout(false);
+            this.pnlHeader.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel pnlLeft;
-        private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.TextBox txtApellido;
-        private System.Windows.Forms.TextBox txtEdad;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Panel pnlHeader;
+        private System.Windows.Forms.Label lblHeader;
+        private System.Windows.Forms.Label lblTitulo, lblNombre, lblApellido, lblEdad, lblInicio, lblFin, lblTipo, lblBuscar;
+        private System.Windows.Forms.TextBox txtNombre, txtApellido, txtEdad, txtBuscar;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1, dateTimePicker2;
         private System.Windows.Forms.ComboBox cmbTipoMembresia;
-        private System.Windows.Forms.TextBox txtBuscar;
-        private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnGuardar, btnEliminar;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
