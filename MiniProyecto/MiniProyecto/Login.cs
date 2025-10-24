@@ -29,7 +29,7 @@ namespace MiniProyecto
             }
 
             // ✅ Conexión a tu base de datos
-            string conexion = "server=10.1.124.205;database=pruebasgestiongym;uid=GestionGym;pwd=chris_kikin;";
+            string conexion = "server=10.1.124.217;database=pruebasgestiongym;uid=GestionGym;pwd=chris_kikin;";
 
             using (MySqlConnection conn = new MySqlConnection(conexion))
             {
@@ -74,6 +74,11 @@ namespace MiniProyecto
         }
 
         private void lblSignupText_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTitle_Click(object sender, EventArgs e)
         {
 
         }

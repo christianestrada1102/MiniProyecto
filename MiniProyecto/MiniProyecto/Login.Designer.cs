@@ -90,6 +90,7 @@
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "SIGN IN TO YOUR ACCOUNT";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
             // 
             // lblUser
             // 
