@@ -31,7 +31,7 @@ namespace TuProyecto
                 return;
             }
 
-            string conexion = "server=10.1.124.217;database=pruebasgestiongym;uid=GestionGym;pwd=chris_kikin;";
+            string conexion = "server=127.0.0.1;database=pruebasgestiongym;uid=GestionGym;pwd=chris_kikin;";
 
             using (MySqlConnection conn = new MySqlConnection(conexion))
             {
@@ -49,7 +49,7 @@ namespace TuProyecto
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al registrar: " + ex.Message);
+                    MessageBox.Show("Error al registrar: " + ex);
                 }
             }
         }

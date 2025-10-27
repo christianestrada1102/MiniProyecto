@@ -8,7 +8,7 @@ namespace MiniProyecto
     public partial class ConexionBD
     {
         // ✅ Mantén tu IP actual y datos correctos del servidor
-        private readonly string servidor = "10.1.124.217";
+        private readonly string servidor = "127.0.0.1";
         private readonly string puerto = "3306";
         private readonly string bd = "pruebasgestiongym";
         private readonly string usuario = "GestionGym";
@@ -29,7 +29,7 @@ namespace MiniProyecto
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al conectar con la base de datos: " + ex.Message,
+                MessageBox.Show("Error al conectar con la base de datos: " + ex,
                                 "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
