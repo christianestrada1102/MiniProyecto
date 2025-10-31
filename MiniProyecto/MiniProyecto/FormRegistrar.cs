@@ -21,13 +21,13 @@ namespace TuProyecto
 
             if (username == "" || password == "")
             {
-                MessageBox.Show("Por favor, completa todos los campos.");
+                MessageBox.Show("Por favor, completa todos los campos para continuar.");
                 return;
             }
 
             if (password != confirmar)
             {
-                MessageBox.Show("Las contraseñas no coinciden.");
+                MessageBox.Show("ERROR!! Las contraseñas no coinciden.");
                 return;
             }
 
@@ -44,12 +44,12 @@ namespace TuProyecto
                     cmd.Parameters.AddWithValue("@pass", password);
                     cmd.ExecuteNonQuery();
 
-                    MessageBox.Show("Usuario registrado con éxito.");
+                    MessageBox.Show("El usuario se ha registrado con éxito!!!.");
                     this.Close();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al registrar: " + ex);
+                    MessageBox.Show("¡¡¡ Error al registrar: " + ex);
                 }
             }
         }
@@ -87,3 +87,4 @@ namespace TuProyecto
         }
     }
 }
+    

@@ -29,8 +29,8 @@ namespace MiniProyecto
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al conectar con la base de datos: " + ex,
-                                "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("¡¡¡ Error al conectar con la base de datos: " + ex,
+                                "Error de conexión!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
@@ -44,14 +44,14 @@ namespace MiniProyecto
                 {
                     if (conexion == null)
                     {
-                        MessageBox.Show("❌ No se estableció conexión con la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("¡¡¡ No se estableció conexión con la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
 
                     // 🔎 Verificar la conexión antes de ejecutar
                     if (conexion.State != ConnectionState.Open)
                     {
-                        MessageBox.Show("⚠️ La conexión no está abierta.", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(" ¡¡¡ La conexión no está abierta.", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return false;
                     }
 
@@ -73,12 +73,12 @@ namespace MiniProyecto
                         if (filasAfectadas > 0)
                         {
                             // 🔥 Confirmar que se insertó
-                            MessageBox.Show("✅ Registro insertado correctamente en la base de datos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("BIEN !!! Registro insertado correctamente en la base de datos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return true;
                         }
                         else
                         {
-                            MessageBox.Show("⚠️ No se insertó ninguna fila. Revisa el nombre de la tabla o columnas.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("ERROR!!! No se insertó ninguna fila. Revisa correctamente el nombre de la tabla o columnas.", "Atención!!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return false;
                         }
                     }
@@ -86,12 +86,12 @@ namespace MiniProyecto
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show($"❌ Error MySQL: {ex.Message}\nCódigo: {ex.Number}", "Error SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"¡¡¡ Error MySQL: {ex.Message}\nCódigo: {ex.Number}", "Error SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("❌ Error al insertar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("¡¡¡ Error al insertar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -114,7 +114,7 @@ namespace MiniProyecto
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al obtener datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("¡¡¡ Se encontro un error al obtener datos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
@@ -142,7 +142,7 @@ namespace MiniProyecto
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error en búsqueda: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("¡¡¡ Error en búsqueda: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
@@ -178,7 +178,7 @@ namespace MiniProyecto
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al actualizar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("¡¡¡ Error al actualizar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -204,7 +204,7 @@ namespace MiniProyecto
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al eliminar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("¡¡¡ Error al eliminar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -231,7 +231,7 @@ namespace MiniProyecto
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al obtener usuario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("¡¡¡ Error al obtener usuario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
@@ -273,7 +273,7 @@ namespace MiniProyecto
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al buscar por código QR: " + ex.Message,
+                MessageBox.Show("¡¡¡ Error al buscar por código QR: " + ex.Message,
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 

@@ -14,7 +14,7 @@ namespace MiniProyecto
 
         private void panelLogo_Load(object sender, EventArgs e)
         {
-            // 🔹 Inicia en tamaño normal
+            //Inicia en tamaño normal
             this.WindowState = FormWindowState.Normal;
         }
 
@@ -31,7 +31,7 @@ namespace MiniProyecto
 
         private void btnQr_Click(object sender, EventArgs e)
         {
-            // 🔹 Vuelve al tamaño normal si estaba maximizado
+            //Vuelve al tamaño normal si estaba maximizado
             this.WindowState = FormWindowState.Normal;
 
             OpenChildForm(new ScanQR());
@@ -60,7 +60,7 @@ namespace MiniProyecto
 
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
-            // 🔹 Solo aquí se pone en pantalla completa
+            //Solo aquí se pone en pantalla completa
             this.WindowState = FormWindowState.Maximized;
 
             OpenChildForm(new AdminUsuarios());
@@ -68,7 +68,7 @@ namespace MiniProyecto
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            // 🔹 También vuelve al tamaño normal
+            //También vuelve al tamaño normal
             this.WindowState = FormWindowState.Normal;
 
             if (activeForm != null)
@@ -89,7 +89,7 @@ namespace MiniProyecto
 
         private void RegButton_Click(object sender, EventArgs e)
         {
-            // 🔹 Vuelve al tamaño normal
+            //Vuelve al tamaño normal
             this.WindowState = FormWindowState.Normal;
 
             OpenChildForm(new FormRegistroUsuario());
@@ -101,6 +101,11 @@ namespace MiniProyecto
         }
 
         private void panelContenido_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void titleBar_Paint(object sender, PaintEventArgs e)
         {
 
         }

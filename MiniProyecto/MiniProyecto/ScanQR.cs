@@ -15,7 +15,7 @@ namespace MiniProyecto
         private Timer temporizador;
         private bool procesando = false;
         private ConexionBD bd = new ConexionBD();
-        private PanelUsuarioInfo panelInfo; // ✅ Referencia al panel
+        private PanelUsuarioInfo panelInfo; //Referencia al panel
 
         public ScanQR()
         {
@@ -23,7 +23,7 @@ namespace MiniProyecto
             CargarDispositivos();
         }
 
-        // ✅ Constructor que recibe el panel
+        //Constructor que recibe el panel
         public ScanQR(PanelUsuarioInfo panel) : this()
         {
             panelInfo = panel;
@@ -42,11 +42,11 @@ namespace MiniProyecto
                 if (comboBox1.Items.Count > 0)
                     comboBox1.SelectedIndex = 0;
                 else
-                    MessageBox.Show("No se encontró ninguna cámara conectada.");
+                    MessageBox.Show("No se encontró ninguna cámara conectada!!!.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar las cámaras: " + ex.Message);
+                MessageBox.Show("¡¡¡ Error al cargar las cámaras: " + ex.Message);
             }
         }
 
@@ -58,7 +58,7 @@ namespace MiniProyecto
                 {
                     if (comboBox1.SelectedIndex < 0)
                     {
-                        MessageBox.Show("Por favor selecciona una cámara.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("¡Por favor selecciona una cámara!.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
@@ -67,17 +67,17 @@ namespace MiniProyecto
                     fuenteVideo.Start();
 
                     temporizador = new Timer();
-                    temporizador.Interval = 300; // ✅ Más rápido: 300ms
+                    temporizador.Interval = 300; //Más rápido: 300ms
                     temporizador.Tick += new EventHandler(Temporizador_Tick);
                     temporizador.Start();
 
-                    lblResultado.Text = "🔍 Escaneando código QR...";
+                    lblResultado.Text = "...Escaneando código QR...";
                     btnIniciar.Enabled = false;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al iniciar cámara: " + ex.Message);
+                MessageBox.Show("!!! Error al iniciar cámara: " + ex.Message);
             }
         }
 
@@ -145,7 +145,7 @@ namespace MiniProyecto
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al escanear: " + ex.Message);
+                MessageBox.Show("Error al escanear!!!: " + ex.Message);
                 Temporizador_Stop();
             }
             finally
@@ -158,7 +158,7 @@ namespace MiniProyecto
         {
             try
             {
-                // Buscar usuario usando ConexionBD
+                //Buscar usuario usando ConexionBD
                 var usuario = await Task.Run(() => bd.BuscarUsuarioPorCodigo(codigoQR));
 
                 this.Invoke((MethodInvoker)delegate
@@ -186,41 +186,41 @@ namespace MiniProyecto
                         int diasRestantes = (int)(fechaFin.Date - DateTime.Now.Date).TotalDays;
                         int diasRestantesMostrar = Math.Max(diasRestantes, 0);
 
-                        string info = $"✅ USUARIO ENCONTRADO\n\n" +
+                        string info = $"CORRECTO!!! USUARIO ENCONTRADO\n\n" +
                                       $"━━━━━━━━━━━━━━━━━━━━━━\n" +
-                                      $"👤 Nombre: {usuario.Item1} {usuario.Item2}\n" +
-                                      $"🎂 Edad: {usuario.Item3} años\n" +
-                                      $"💳 Membresía: {usuario.Item4}\n" +
-                                      $"📅 Inicio: {fechaInicio:dd/MM/yyyy}\n" +
-                                      $"📅 Fin: {fechaFin:dd/MM/yyyy}\n" +
-                                      $"📏 Duración total: {duracionTotal} días\n" +
-                                      $"⏳ Días restantes: {diasRestantesMostrar} días\n" +
+                                      $"-> Nombre: {usuario.Item1} {usuario.Item2}\n" +
+                                      $"-> Edad: {usuario.Item3} años\n" +
+                                      $"-> Membresía: {usuario.Item4}\n" +
+                                      $"-> Inicio: {fechaInicio:dd/MM/yyyy}\n" +
+                                      $"-> Fin: {fechaFin:dd/MM/yyyy}\n" +
+                                      $"-> Duración total: {duracionTotal} días\n" +
+                                      $"-> Días restantes: {diasRestantesMostrar} días\n" +
                                       $"━━━━━━━━━━━━━━━━━━━━━━\n" +
                                       $"🔑 Código QR: {codigoQR}";
 
-                        MessageBox.Show(info, "✅ Información del Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        lblResultado.Text = $"✅ Usuario: {usuario.Item1} {usuario.Item2}";
+                        MessageBox.Show(info, "BIEN!! Información del Usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        lblResultado.Text = $"LISTO!! Usuario: {usuario.Item1} {usuario.Item2}";
                     }
                     else
                     {
-                        string mensaje = $"❌ NO ENCONTRADO\n\n" +
+                        string mensaje = $"!!! NO ENCONTRADO\n\n" +
                                          $"No se encontró ningún usuario\n" +
-                                         $"con el código QR:\n\n" +
+                                         $"con el código QR!:\n\n" +
                                          $"{codigoQR}\n\n" +
                                          $"Por favor verifica que el usuario\n" +
-                                         $"esté registrado en la base de datos.";
+                                         $"esté registrado en la base de datos!.";
 
-                        MessageBox.Show(mensaje, "❌ Usuario no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        lblResultado.Text = "❌ Usuario no encontrado";
+                        MessageBox.Show(mensaje, "!!! Usuario no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        lblResultado.Text = "!!! Usuario no encontrado";
                     }
 
                     btnIniciar.Enabled = true;
-                    lblResultado.Text = "Esperando resultado...";
+                    lblResultado.Text = "...Esperando resultado...";
                 });
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al procesar QR: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("¡¡¡ Error al procesar QR: " + ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -254,7 +254,7 @@ namespace MiniProyecto
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al abrir formulario: " + ex.Message);
+                MessageBox.Show("¡¡¡ Error al abrir formulario: " + ex.Message);
             }
         }
 

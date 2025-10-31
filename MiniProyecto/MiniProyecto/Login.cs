@@ -24,11 +24,11 @@ namespace MiniProyecto
 
             if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(contraseña))
             {
-                MessageBox.Show("Por favor completa todos los campos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("¡¡Por favor completa todos los campos!!.", "Advertencia :O", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // ✅ Conexión a tu base de datos
+            //Conexión a tu base de datos
             string conexion = "server=127.0.0.1;database=pruebasgestiongym;uid=GestionGym;pwd=chris_kikin;";
 
             using (MySqlConnection conn = new MySqlConnection(conexion))
@@ -36,7 +36,7 @@ namespace MiniProyecto
                 try
                 {
                     conn.Open();
-                    MessageBox.Show("conectada");                    // ✅ Consulta que valida si existe el usuario y contraseña
+                    MessageBox.Show("conectada CON EXITO!!");//Consulta que valida si existe el usuario y contraseña
                     string query = "SELECT COUNT(*) FROM usuarios WHERE nombre_usuario = @vuser AND contrasena = @pass";
 
                     MySqlCommand cmd = new MySqlCommand(query, conn);
@@ -814,17 +814,17 @@ namespace MiniProyecto
 
 
                     {
-                        MessageBox.Show("Inicio de sesión exitoso.", "Bienvenido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("El inicio de sesión exitoso!!!.", "Bienvenido!!!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.DialogResult = DialogResult.OK;
                     }
                     else
                     {
-                        MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("El usuario o contraseña incorrectos :O!!.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al conectar con la base de datos: " + ex);
+                    MessageBox.Show("¡¡¡ Se encontro un error al conectar con la base de datos: " + ex);
                 }
             }
         }

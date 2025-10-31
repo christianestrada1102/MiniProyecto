@@ -176,6 +176,7 @@
             this.titleBar.Name = "titleBar";
             this.titleBar.Size = new System.Drawing.Size(581, 85);
             this.titleBar.TabIndex = 1;
+            this.titleBar.Paint += new System.Windows.Forms.PaintEventHandler(this.titleBar_Paint);
             // 
             // pictureBox4
             // 

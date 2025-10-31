@@ -20,9 +20,9 @@ namespace MiniProyecto
 
         private void InfoUsuario_Load(object sender, EventArgs e)
         {
-            // ⭐ EVENTOS
+            //EVENTOS
             btnBuscar.Click += btnBuscar_Click;
-            txtIDUsuario.KeyPress += txtIDUsuario_KeyPress; // Enter para buscar
+            txtIDUsuario.KeyPress += txtIDUsuario_KeyPress; //Enter para buscar
         }
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -30,7 +30,7 @@ namespace MiniProyecto
 
             if (string.IsNullOrWhiteSpace(id))
             {
-                MessageBox.Show("Ingresa un ID de usuario", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ingresa un ID de usuario!", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -40,7 +40,7 @@ namespace MiniProyecto
             }
             else
             {
-                MessageBox.Show("ID inválido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ERROR! ID inválido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -53,7 +53,7 @@ namespace MiniProyecto
             }
         }
 
-        // ⭐ MOSTRAR DATOS DEL USUARIO
+        //MOSTRAR DATOS DEL USUARIO
         private void MostrarDatos(int idUsuario)
         {
             DataTable usuario = bd.ObtenerUsuarioPorID(idUsuario);
@@ -62,18 +62,18 @@ namespace MiniProyecto
             {
                 DataRow fila = usuario.Rows[0];
 
-                // Mostrar datos principales
+                //Mostrar datos principales
                 lblNombre.Text = "Nombre: " + fila["nombre"].ToString() + " " + fila["apellido"].ToString();
                 lblEdad.Text = "Edad: " + fila["edad"].ToString() + " años";
                 lblMembresia.Text = "Membresía: " + fila["tipomembresia"].ToString();
 
-                // Calcular días restantes
+                //Calcular días restantes
                 DateTime fechaFin = Convert.ToDateTime(fila["fechafin"]);
                 int diasRestantes = (int)(fechaFin - DateTime.Today).TotalDays;
 
                 if (diasRestantes > 0)
                 {
-                    lblDiasRestantes.Text = $"Membresía vigente: {diasRestantes} días";
+                    lblDiasRestantes.Text = $"Membresía vigente por: {diasRestantes} días";
                     lblDiasRestantes.ForeColor = System.Drawing.Color.Green;
                 }
                 else if (diasRestantes == 0)
@@ -83,22 +83,22 @@ namespace MiniProyecto
                 }
                 else
                 {
-                    lblDiasRestantes.Text = $"Membresía vencida hace {Math.Abs(diasRestantes)} días";
+                    lblDiasRestantes.Text = $"La Membresía vencio hace {Math.Abs(diasRestantes)} días";
                     lblDiasRestantes.ForeColor = System.Drawing.Color.Red;
                 }
 
-                // Mostrar fechas
+                //Mostrar fechas
                 lblFechaInicio.Text = "Inicio: " + Convert.ToDateTime(fila["fechaini"]).ToString("dd/MM/yyyy");
                 lblFechaFin.Text = "Fin: " + fechaFin.ToString("dd/MM/yyyy");
             }
             else
             {
-                MessageBox.Show("Usuario no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ERROR!! Usuario no encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 LimpiarPantalla();
             }
         }
 
-        // ⭐ LIMPIAR PANTALLA
+        //LIMPIAR PANTALLA
         private void LimpiarPantalla()
         {
             lblNombre.Text = "Nombre: ---";

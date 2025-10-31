@@ -8,13 +8,13 @@ namespace MiniProyecto
     public partial class FormRegistroUsuario : Form
     {
         private bool _ejecutandoEvento = false;
-        private ConexionBD bd = new ConexionBD(); // ✅ USAR ConexionBD
+        private ConexionBD bd = new ConexionBD(); //para USAR ConexionBD
 
         public FormRegistroUsuario()
         {
             InitializeComponent();
 
-            // Conectar eventos de forma segura
+            //Conectar eventos de forma segura
             btnGenerarQR.Click -= btnGenerarQR_Click;
             btnGenerarQR.Click += btnGenerarQR_Click;
 
@@ -104,7 +104,7 @@ namespace MiniProyecto
 
                 if (lblDiasRestantes != null)
                 {
-                    lblDiasRestantes.Text = $"Duración: {duracionTotal} días | Restan: {diasMostrar} días";
+                    lblDiasRestantes.Text = $"Duración de la membresia: {duracionTotal} días en total | Restan: {diasMostrar} días para que acabe la membresia";
                 }
             }
             catch { }
@@ -117,27 +117,27 @@ namespace MiniProyecto
 
             try
             {
-                // Validaciones básicas
+                //Validaciones básicas
                 if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
                     string.IsNullOrWhiteSpace(txtApellido.Text) ||
                     string.IsNullOrWhiteSpace(txtEdad.Text) ||
                     string.IsNullOrWhiteSpace(txtMembresia.Text))
                 {
-                    MessageBox.Show("⚠️ Por favor completa todos los campos.", "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("¡¡¡ Por favor completa todos los campos.", "Campos Vacíos por completar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Validar edad
+                //Validar edad
                 if (!int.TryParse(txtEdad.Text, out int edad) || edad <= 0 || edad > 120)
                 {
-                    MessageBox.Show("⚠️ Por favor ingresa una edad válida (1-120).", "Edad Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(" ERROR !!! Por favor ingresa una edad válida.", "Edad Inválida vuelve a intentar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Validar membresía
+                //Validar membresía
                 if (!ValidarMembresia(txtMembresia.Text))
                 {
-                    MessageBox.Show("⚠️ Membresía inválida.\n\nSolo se permiten:\n• dia\n• semana\n• mes\n• año",
+                    MessageBox.Show("¡¡¡ Membresía inválida.\n\nSolo se permiten:\n• dia\n• semana\n• mes\n• año",
                                     "Membresía Inválida",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Warning);
@@ -145,46 +145,46 @@ namespace MiniProyecto
                     return;
                 }
 
-                // Asegurarse que la fecha de fin esté actualizada
+                //Asegurarse que la fecha de fin esté actualizada
                 CalcularFechaFin();
 
-                // Crear código QR único
+                //Crear código QR único
                 string codigoQR = Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
 
-                // Generar imagen QR
+                //Generar imagen QR
                 QRCodeGenerator qrGenerator = new QRCodeGenerator();
                 QRCodeData qrCodeData = qrGenerator.CreateQrCode(codigoQR, QRCodeGenerator.ECCLevel.Q);
                 QRCode qrCode = new QRCode(qrCodeData);
                 Bitmap qrImage = qrCode.GetGraphic(20);
 
-                // Mostrar el QR
+                //Mostrar el QR
                 pictureBoxQR.Image = qrImage;
 
-                // Preparar datos para la BD
+                //Preparar datos para la BD
                 string nombre = txtNombre.Text.Trim();
                 string apellido = txtApellido.Text.Trim();
                 string membresia = txtMembresia.Text.Trim().ToLower();
                 DateTime fechaInicio = dtInicio.Value.Date;
                 DateTime fechaFin = dtFin.Value.Date;
 
-                // ✅ USAR ConexionBD en lugar de UsuarioDAO
+                //USAR ConexionBD en lugar de UsuarioDAO
                 bool insertado = bd.InsertarUsuario(nombre, apellido, edad, fechaInicio, fechaFin, membresia, codigoQR);
 
                 if (insertado)
                 {
-                    // Guardar QR en Downloads/QR
+                    //Guardar QR en Downloads/QR
                     string nombreArchivo = $"QR_{nombre}_{apellido}_{codigoQR}";
                     string rutaGuardada = GenerarQR.GuardarQR(qrImage, nombreArchivo);
 
                     if (rutaGuardada != null)
                     {
-                        MessageBox.Show($"✅ Usuario registrado correctamente.\n\n💾 QR guardado en:\n{rutaGuardada}",
-                                        "Registro Exitoso",
+                        MessageBox.Show($" ¡LISTO! Usuario registrado correctamente.\n\n CORRECTO! QR guardado en:\n{rutaGuardada}",
+                                        "Registro Exitoso!!",
                                         MessageBoxButtons.OK,
                                         MessageBoxIcon.Information);
                     }
 
-                    // Limpiar campos (mantener QR visible)
+                    //Limpiar campos (mantener QR visible)
                     txtNombre.Clear();
                     txtApellido.Clear();
                     txtEdad.Clear();
@@ -199,7 +199,7 @@ namespace MiniProyecto
             }
             catch (Exception ex)
             {
-                MessageBox.Show("❌ Error al generar QR: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(" ¡¡¡ Error al generar QR: " + ex.Message, "Error!!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
